@@ -1,3 +1,9 @@
+
+DROP DATABASE IF EXISTS BankApp;
+CREATE DATABASE BankApp;
+
+USE `BankApp` ;
+
 CREATE TABLE `User` (
   `UserID` INT NOT NULL AUTO_INCREMENT,
   `BankID` INT NOT NULL,
@@ -33,8 +39,7 @@ CREATE TABLE `Banks` (
   `BankName` varchar(20) not null,
   `Phone` varchar(20) not null,
   `Address` varchar(20) not null,
-  PRIMARY KEY (`BankID`),
-  FOREIGN KEY (`BankName`) REFERENCES `User`(`Address`)
+  PRIMARY KEY (`BankID`)
 );
 
 CREATE TABLE `Transactions` (
@@ -46,6 +51,8 @@ CREATE TABLE `Transactions` (
   `TransferToChequing` Decimal,
   `TransferToSaving` Decimal,
   PRIMARY KEY (`TransactionID`),
-  FOREIGN KEY (`TransferToSaving`) REFERENCES `Accounts`(`AccountTypeID`)
+  FOREIGN KEY (`AccountTypeID`) REFERENCES `Accounts`(`AccountTypeID`),
+  foreign key (`UserID`) references `UserAccount`(`UserID`)
+  
 );
 
