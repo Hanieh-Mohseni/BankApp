@@ -11,10 +11,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userID;
 
-    @JoinColumn
-    @OneToMany
-    private int bankID;
-
     @Column(nullable = false)
     private String firstName;
 
@@ -47,15 +43,7 @@ public class User {
         this.userID = userID;
     }
 
-    public int getBankID() {
-        return bankID;
-    }
-
-    public void setBankID(int bankID) {
-        this.bankID = bankID;
-    }
-
-    public String getFirstName() {
+     public String getFirstName() {
         return firstName;
     }
 
