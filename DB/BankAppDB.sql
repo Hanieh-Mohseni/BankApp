@@ -1,12 +1,9 @@
+DROP DATABASE IF EXISTS BankAppDB;
+CREATE DATABASE BankAppDB;
 
-DROP DATABASE IF EXISTS BankApp;
-CREATE DATABASE BankApp;
-
-USE `BankApp` ;
-
+USE `BankAppDB` ;
 CREATE TABLE `User` (
   `UserID` INT NOT NULL AUTO_INCREMENT,
-  `BankID` INT NOT NULL,
   `FirstName` varchar(20) not null,
   `LastName` varchar(20) not null,
   `Phone` varchar(20) not null,
@@ -17,42 +14,31 @@ CREATE TABLE `User` (
   `Password` varchar(20) not null,
   PRIMARY KEY (`UserID`)
 );
-
-CREATE TABLE `UserAccount` (
-  `UserID` INT NOT NULL AUTO_INCREMENT,
-  `AccountTypeID` INT NOT NULL AUTO_INCREMENT,
-  `AccountNumber` Integer,
-  `Balance` Decimal,
-  `Status` boolean default true,
-  `TransactionID` INT NOT NULL,
-  PRIMARY KEY (`UserID`, `AccountTypeID`)
-);
-
 CREATE TABLE `Accounts` (
-  `AccountTypeID` INT NOT NULL AUTO_INCREMENT,
-  `AccountType` varchar(20) not null,
-  PRIMARY KEY (`AccountTypeID`)
-);
-
-CREATE TABLE `Banks` (
-  `BankID` INT NOT NULL AUTO_INCREMENT,
-  `BankName` varchar(20) not null,
-  `Phone` varchar(20) not null,
-  `Address` varchar(20) not null,
-  PRIMARY KEY (`BankID`)
+  `AccountID` INT NOT NULL AUTO_INCREMENT,
+  `UserID` INT,
+  `AccountNumber` int not null,
+  `Name` varchar(20),
+  `AccountType` VARCHAR(10),
+  `Status` VARCHAR(10) not null,
+  `Balance` decimal not null,
+  `opendate` datetime not null,
+  PRIMARY KEY (`AccountID`),
+  FOREIGN KEY (`UserID`) REFERENCES `User`(`UserID`)
 );
 
 CREATE TABLE `Transactions` (
   `TransactionID` INT NOT NULL AUTO_INCREMENT,
-  `AccountTypeID` INT NOT NULL,
-  `UserID` INT NOT NULL,
-  `Deposit` Decimal,
-  `Withdraw` Decimal,
-  `TransferToChequing` Decimal,
-  `TransferToSaving` Decimal,
+  `FromAccountID` INT NOT NULL,
+  `ToAccountID` INT NOT NULL,
+  `Type` varchar(10) not null,
+  `Amount` Decimal not null,
+  `TransactionDate` datetime not null,
+  `Description` varchar(100) not null,
   PRIMARY KEY (`TransactionID`),
-  FOREIGN KEY (`AccountTypeID`) REFERENCES `Accounts`(`AccountTypeID`),
-  foreign key (`UserID`) references `UserAccount`(`UserID`)
-  
+  FOREIGN KEY (`FromAccountID`) REFERENCES `Accounts`(`AccountID`),
+  FOREIGN KEY (`ToAccountID`) REFERENCES `Accounts`(`AccountID`)
 );
+
+
 
