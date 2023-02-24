@@ -11,9 +11,9 @@ const Topbar=()=> {
         <NavigationList>
           <LiDiv>
             <NavigationLink to="/">HOME</NavigationLink>
-            <NavigationLink to="/accounts">Accounts</NavigationLink>
-            <NavigationLink to="/register">Register</NavigationLink>
-            <NavigationLink to="/login">Login</NavigationLink>
+            <NavigationLink to="/accounts">ACCOUNTS</NavigationLink>
+            <NavigationLink to="/register">REGISTER</NavigationLink>
+            <NavigationLink to="/login">LOGIN</NavigationLink>
 
 
 

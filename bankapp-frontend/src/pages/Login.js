@@ -80,6 +80,7 @@ const Logindiv = styled.div`
   align-items: center;
   justify-content: center;
   background-size: cover;
+  background-color: #333333;
 `;
 
 const LoginSpan = styled.span`
@@ -91,6 +92,7 @@ const Loginform = styled.form`
   margin-top: 20px;
   display: flex;
   flex-direction: column;
+  background-color:#333333;
 `;
 
 const Loginlabel = styled.label`

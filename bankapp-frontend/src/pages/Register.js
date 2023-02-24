@@ -127,11 +127,13 @@ const Register = () => {
 };
 
 const Registerdiv = styled.div`
-  height: calc(100vh - 50px);
+  height: calc(100vh );
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: #333333;
+
 `;
 
 const RegisterSpan = styled.span`
