@@ -5,6 +5,7 @@ import Login from "../pages/Login";
 import Logout from "../pages/Logout"
 import Register from "../pages/Register";
 import MyAccounts from "../pages/MyAccounts"
+import Profile from "../pages/Profile";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { UserConstext } from './UserContext';
 import { useState, useContext } from 'react';
@@ -29,6 +30,8 @@ const App=()=> {
         <Route path="/logout" element={<Logout />} />
         <Route path="/register" element={<Register />} />
         <Route path="/accounts" element={<MyAccounts />} />
+        <Route path="/profile" element={<Profile />} />
+
 
 
 
