@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-const MyAccounts = () => {
+
+const MyAccounts=()=> {
   const [name, setName] = useState(null);
   const [number, setNember] = useState(null);
   const [type, setType] = useState();
   const [balance, setBalance] = useState(null);
   const [opendate, setOpendate] = useState(null);
   const [status, setStatus] = useState(null);
-  const { userId } = useParams();
+  const {userId} = useParams();
   const [message, setMessage] = useState(null);
+
 
   const retrieveData = () => {
     fetch(`http://localhost:8080/api/accounts/user/${userId}`)
@@ -35,26 +37,29 @@ const MyAccounts = () => {
 
   return (
     <Wrapper>
-      <FormDiv>
-        <Form>
-          <Mydiv>Selected Teacher Info </Mydiv>
+    <FormDiv>
+      <Form>
+        <Mydiv>Selected Teacher Info </Mydiv>
 
-          <Label> Name: {name != null ? name : ""}</Label>
-          <br />
-          <Label> Number: {number != null ? number : ""}</Label>
-          <br />
-          <Label> Type: {type != null ? type : ""}</Label>
-          <br />
-          <Label> Balance: {balance != null ? balance : ""}</Label>
-          <br />
-          <Label> Opendate: {opendate != null ? opendate : ""}</Label>
-          <br />
-          <Label> Status: {status != null ? status : ""}</Label>
+        <Label> Name: {name != null ? name : ""}</Label>
+        <br />
+        <Label> Number: {number != null ? number : ""}</Label>
+        <br />
+        <Label> Type: {type != null ? type : ""}</Label>
+        <br />
+        <Label> Balance: {balance != null ? balance : ""}</Label>
+        <br />
+        <Label> Opendate: {opendate != null ? opendate : ""}</Label>
+        <br />
+        <Label> Status: {status != null ? status : ""}</Label>
+
+        <MessageLabel> {message} </MessageLabel>
+
         </Form>
-      </FormDiv>
-    </Wrapper>
-  );
-};
+    </FormDiv>
+  </Wrapper>
+  )
+}
 
 const Mydiv = styled.div`
   color: white;
@@ -102,4 +107,35 @@ const Label = styled.label`
   display: block;
 `;
 
-export default MyAccounts;
+const MessageLabel = styled.label`
+  align-items: center;
+  color: white;
+  margin-left: 2px;
+  display: block;
+  font-weight: 400;
+  color: white;
+`;
+
+const Button = styled.button`
+  position: relative;
+  align-items: center;
+  margin-bottom: 20px;
+  display: block;
+  margin: 0 auto;
+  width: 80px;
+  background-color: #f9c000;
+  color: #333;
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  padding: 3px;
+  font-weight: 300;
+  margin-top: 5px;
+  font-size: 15px;
+  border-radius: 30px;
+  box-shadow: 0 0 4px #f7dd00;
+  transition: box-shadow 0.5s ease;
+`;
+
+
+export default MyAccounts
