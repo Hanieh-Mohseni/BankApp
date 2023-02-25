@@ -12,12 +12,14 @@ import { useState, useContext } from 'react';
 
 const App=()=> {
 
-  const [user,setUser]= useState("")
-  const [accountsList, setAccountsList] = useState([])
+  const [token,setToken]= useState("");
+  const [userId, setUserId] = useState("");
+  const [loginname, setLoginname] = useState("");
+
   return (
     <div>
      <Router>
-     <UserConstext.Provider value={{user, setUser, accountsList, setAccountsList}}>
+     <UserConstext.Provider value={{token, setToken, userId, setUserId,loginname,setLoginname}}>
 
       <Topbar />
       <Routes>

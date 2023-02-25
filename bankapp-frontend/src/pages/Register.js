@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useNavigate } from "react-router";
+import { UserConstext } from "../component/UserContext";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const Register = () => {
       alert("Your entered passwords doesn't match. Please try again!");
       return true;
     }
-    fetch("/api/new-user", {
+    fetch(" http://localhost:8080/api/v1/auth/register", {
       method: "POST",
       body: JSON.stringify({
         loginname: loginname,
@@ -28,6 +29,7 @@ const Register = () => {
         lastname: lastname,
         address: address,
         phone: phone,
+        role:"USER",
       }),
       headers: {
         "Content-Type": "application/json",
@@ -35,7 +37,7 @@ const Register = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.status === 400) {
+        if (data.status === 501) {
           alert(data.msg);
         }
         if (data.status === 200) {

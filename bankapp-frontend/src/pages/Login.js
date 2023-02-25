@@ -12,11 +12,14 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const { user, setUser } = useContext(UserConstext);
-  const { accountsList, setAccountsList } = useContext(UserConstext);
+  const { userId, setUserId } = useContext(UserConstext);
+  const { token, setToken } = useContext(UserConstext);
+  // const {loginname,setLoginname} = useContext(UserConstext);
+
 
   const signing_in = (e) => {
     e.preventDefault();
-    fetch("localhost:8080/api/v1/auth/authenticate", {
+    fetch("http://localhost:8080/api/v1/auth/authenticate", {
       method: "POST",
       body: JSON.stringify({
         loginname: loginname,
@@ -33,9 +36,9 @@ const Login = () => {
         }
 
         if (data.status === 200) {
-          setUser(data.token.loginname);
-          setAccountsList(data.token.accounts);
-          navigate("/accounts");
+          setToken(data.token);
+          setUserId(data.userId);
+          navigate("/accounts/userId");
         }
       })
       .catch((err) => {
