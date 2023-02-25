@@ -5,6 +5,8 @@ import { UserConstext } from './UserContext';
 import styled from 'styled-components';
 
 const Topbar=()=> {
+  const {loginname, setLoginname} = useContext(UserConstext);
+
   return (
     <Wrapper>
       <TopCenter>
@@ -24,18 +26,18 @@ const Topbar=()=> {
       </TopCenter>
 
       <TopRight>
-{/* 
+
 <NavigationList>
 
    <LeftLiDiv>
-   {user ? <NavigationLink to="/profile">{user.split('@')[0]}</NavigationLink> : <NavigationLink to="/Register"> Register</NavigationLink>}
+   {loginname ? <NavigationLink to="/accounts">{loginname}</NavigationLink> : <NavigationLink to="/Register"> Register</NavigationLink>}
    </LeftLiDiv>
 
    <LeftLiDiv>
-   {user ?  <NavigationLink to="/logout">Logout</NavigationLink> :<NavigationLink to="/Login">Login</NavigationLink>}
+   {loginname ?  <NavigationLink to="/logout">Logout</NavigationLink> :<NavigationLink to="/Login">Login</NavigationLink>}
    </LeftLiDiv>
 
-</NavigationList> */}
+</NavigationList>
  
  
 
