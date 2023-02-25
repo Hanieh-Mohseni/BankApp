@@ -39,7 +39,7 @@ const MyAccounts=()=> {
     <Wrapper>
     <FormDiv>
       <Form>
-        <Mydiv>Selected Teacher Info </Mydiv>
+        <Mydiv>Acconts Info</Mydiv>
 
         <Label> Name: {name != null ? name : ""}</Label>
         <br />
