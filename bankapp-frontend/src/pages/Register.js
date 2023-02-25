@@ -13,6 +13,8 @@ const Register = () => {
   const [lastname, setLastname] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
+  var lastStatus;
+  var errMsg;
 
   const registerUser = (e) => {
     e.preventDefault();
@@ -35,13 +37,18 @@ const Register = () => {
         "Content-Type": "application/json",
       },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        lastStatus = res.status;
+        errMsg = res.msg;
+        return res.json();
+      })
       .then((data) => {
-        if (data.status === 501) {
-          alert(data.msg);
+        console.log(data);
+        if (lastStatus === 501) {
+          alert(errMsg);
         }
-        if (data.status === 200) {
-          alert(data.msg);
+        if (lastStatus === 200) {
+          alert("User is registered.");
           localStorage.setItem("Current_User", loginname);
           // after registration, directly going to the login page
           // using react router dom ver.6 usehystory=navigate
@@ -62,7 +69,7 @@ const Register = () => {
       >
         <RegisterSpan>Register</RegisterSpan>
 
-        <Registerlabel>User Name</Registerlabel>
+        <Registerlabel>Login Name</Registerlabel>
         <Registerinput
           type="text"
           name="loginname"

@@ -15,6 +15,8 @@ const Login = () => {
   const { userId, setUserId } = useContext(UserConstext);
   const { token, setToken } = useContext(UserConstext);
   // const {loginname,setLoginname} = useContext(UserConstext);
+  var lastStatus;
+  var errMsg;
 
 
   const signing_in = (e) => {
@@ -29,16 +31,23 @@ const Login = () => {
         "Content-Type": "application/json",
       },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        lastStatus = res.status;
+        errMsg = res.msg;
+        return res.json();
+      })
       .then((data) => {
-        if (data.status === 501) {
-          alert(data.msg);
+        console.log(data);
+        if (lastStatus === 501) {
+          alert(errMsg);
         }
 
-        if (data.status === 200) {
+        if (lastStatus === 200) {
+          console.log(data.token);
+          console.log(data.userId);
           setToken(data.token);
           setUserId(data.userId);
-          navigate("/accounts/userId");
+          navigate("/accounts");
         }
       })
       .catch((err) => {
