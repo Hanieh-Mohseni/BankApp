@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import styled from "styled-components";
 // in 'react-router' ver.6 instead of useHystory
 import { useNavigate } from "react-router";
-import { UserConstext } from "../component/UserContext";
+import { UserContext } from "../component/UserContext";
 
 const Login = () => {
   const [loginname, setLoginname] = useState(
@@ -11,10 +11,10 @@ const Login = () => {
   );
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const { user, setUser } = useContext(UserConstext);
-  const { userId, setUserId } = useContext(UserConstext);
-  const { token, setToken } = useContext(UserConstext);
-  // const {loginname,setLoginname} = useContext(UserConstext);
+  const { user, setUser } = useContext(UserContext);
+  const { userId, setUserId } = useContext(UserContext);
+  const { token, setToken } = useContext(UserContext);
+  // const {loginname,setLoginname} = useContext(UserContext);
   var lastStatus;
   var errMsg;
 
@@ -45,6 +45,8 @@ const Login = () => {
         if (lastStatus === 200) {
           console.log(data.token);
           console.log(data.userId);
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("userId", data.userId);
           setToken(data.token);
           setUserId(data.userId);
           navigate("/accounts");

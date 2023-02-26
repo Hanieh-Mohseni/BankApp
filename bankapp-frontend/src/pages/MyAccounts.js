@@ -1,34 +1,54 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { UserContext } from "../component/UserContext";
 
 
-const MyAccounts=()=> {
+const MyAccounts = () => {
+  const [accounts, setAccounts] = useState(null);
   const [name, setName] = useState(null);
   const [number, setNember] = useState(null);
   const [type, setType] = useState();
   const [balance, setBalance] = useState(null);
   const [opendate, setOpendate] = useState(null);
   const [status, setStatus] = useState(null);
-  const {userId} = useParams();
+  const { userId } = useParams();
   const [message, setMessage] = useState(null);
-
+  // const { token } = useContext(UserConstext);
 
   const retrieveData = () => {
-    fetch(`http://localhost:8080/api/accounts/user/${userId}`)
-      .then((resp) => resp.json())
-      .then((data) => {
-        setName(data.name);
-        setNember(data.number);
-        setType(data.type);
-        setBalance(data.balance);
-        setOpendate(data.opendate);
-        setStatus(data.status);
-      })
-      .catch((err) => {
-        // console.log("we have a problem " + err.message);
-        setMessage("we have a problem " + err.message);
-      });
+    // const user = JSON.parse(localStorage.getItem('user'));
+    var token = localStorage.getItem('token');
+    console.log(token);
+    var userId = localStorage.getItem('userId');
+    var lastStatus;
+
+    fetch(`http://localhost:8080/api/accounts/user/${userId}`, {
+      "method": "GET",
+      "timeout": 0,
+      "headers": { 
+        "Authorization": 'Bearer ' + token
+      }
+    })
+    .then((resp) => {
+      lastStatus = resp.status;
+      return resp.json();
+    })
+    .then((data) => {
+      setAccounts(data);
+
+    })
+    .catch((err) => {
+      console.log(err);
+      if (lastStatus===401) {
+        setMessage("The token maybe expired or invalid, please login again.")
+        return;
+      }
+      // console.log("we have a problem " + err.message);
+      setMessage("we have a problem " + err.message);
+    });
+
   };
 
   useEffect(() => {
@@ -37,27 +57,62 @@ const MyAccounts=()=> {
 
   return (
     <Wrapper>
-    <FormDiv>
-      <Form>
-        <Mydiv>Acconts Info</Mydiv>
+      <FormDiv>
+        <Form>
+          <Mydiv>Acconts Info</Mydiv>
+          <table className="table border shadow">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Number</th>
+                <th scope="col">Type</th>
+                <th scope="col">Balance</th>
+                <th scope="col">Opendate</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {accounts != null && accounts.map((account, index) => (
+                <tr key={account.id}>
+                  <td>{index + 1}</td>
+                  <td>{account.name}</td>
+                  <td>{account.number}</td>
+                  <td>{account.type}</td>
+                  <td>{account.balance}</td>
+                  <td>{account.opendate}</td>
+                  <td>{account.status}</td>
+                  <td>
+                    <Link
+                      className="btn btn-primary mx-2"
+                      to={`/accountDetail/${account.id}`}
+                    >
+                      Detail
+                    </Link>
+                    <Link
+                      className="btn btn-outline-primary mx-2"
+                      to={`/deposit/${account.id}`}
+                    >
+                      Deposit
+                    </Link>
+                    <Link
+                      className="btn btn-outline-primary mx-2"
+                      to={`/withdraw/${account.id}`}
+                    >
+                      withdraw
+                    </Link>
 
-        <Label> Name: {name != null ? name : ""}</Label>
-        <br />
-        <Label> Number: {number != null ? number : ""}</Label>
-        <br />
-        <Label> Type: {type != null ? type : ""}</Label>
-        <br />
-        <Label> Balance: {balance != null ? balance : ""}</Label>
-        <br />
-        <Label> Opendate: {opendate != null ? opendate : ""}</Label>
-        <br />
-        <Label> Status: {status != null ? status : ""}</Label>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
 
-        <MessageLabel> {message} </MessageLabel>
+          <MessageLabel> {message} </MessageLabel>
 
         </Form>
-    </FormDiv>
-  </Wrapper>
+      </FormDiv>
+    </Wrapper>
   )
 }
 
