@@ -85,8 +85,8 @@ const NavigationList = styled.ul`
 const LiDiv = styled.li`
   list-style-type: none;
   margin: 20px;
-  font-size: 18px;
-  font-weight: 300;
+  font-size: 16px;
+  font-weight: 500;
   cursor: pointer;
 `;
 const LeftLiDiv = styled.li`

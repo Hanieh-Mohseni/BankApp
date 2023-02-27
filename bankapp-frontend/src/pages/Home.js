@@ -31,11 +31,14 @@ background-position: center;
   overflow-y: hidden; 
   overflow-x: hidden; 
 
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+
 `;
 
 const Button = styled.button`
-  /* position: absolute; */
-  margin-top: 200px;
+  position: relative;
   align-items: center;
   margin-bottom: 10px;
   display: block;
@@ -48,7 +51,8 @@ const Button = styled.button`
   align-items: center;
   padding: 3px;
   font-weight: 500;
-  margin-top: 5px;
+  margin-top: 230px;
+  margin-left: -300px;
   font-size: 25px;
   border-radius: 30px;
   box-shadow: 0 0 4px #ea7023;
