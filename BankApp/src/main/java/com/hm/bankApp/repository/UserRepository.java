@@ -1,6 +1,6 @@
-package com.sg.bankApp.repository;
+package com.hm.bankApp.repository;
 
-import com.sg.bankApp.entity.User;
+import com.hm.bankApp.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

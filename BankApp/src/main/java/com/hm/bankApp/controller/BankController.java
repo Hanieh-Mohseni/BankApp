@@ -1,10 +1,10 @@
-package com.sg.bankApp.controller;
+package com.hm.bankApp.controller;
 
-import com.sg.bankApp.entity.Account;
-import com.sg.bankApp.entity.Transaction;
-import com.sg.bankApp.entity.User;
-import com.sg.bankApp.model.Operation;
-import com.sg.bankApp.service.BankService;
+import com.hm.bankApp.entity.Transaction;
+import com.hm.bankApp.entity.Account;
+import com.hm.bankApp.entity.User;
+import com.hm.bankApp.model.Operation;
+import com.hm.bankApp.service.BankService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -44,7 +44,7 @@ public class BankController {
     @ResponseStatus(HttpStatus.CREATED)
     public String transferMoney(@RequestBody Transaction transaction) {
         service.transfer(transaction);
-        return "Money is transfered.";
+        return "Money is transferred.";
     }
 
     @GetMapping("/user/{userId}")

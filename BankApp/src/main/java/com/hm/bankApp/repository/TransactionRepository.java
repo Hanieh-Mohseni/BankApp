@@ -1,7 +1,7 @@
-package com.sg.bankApp.repository;
+package com.hm.bankApp.repository;
 
-import com.sg.bankApp.entity.Account;
-import com.sg.bankApp.entity.Transaction;
+import com.hm.bankApp.entity.Account;
+import com.hm.bankApp.entity.Transaction;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

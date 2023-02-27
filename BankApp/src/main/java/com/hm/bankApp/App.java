@@ -1,4 +1,4 @@
-package com.sg.bankApp;
+package com.hm.bankApp;
 
 import org.springframework.boot.SpringApplication;
 

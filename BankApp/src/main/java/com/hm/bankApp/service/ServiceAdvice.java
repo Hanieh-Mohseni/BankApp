@@ -1,4 +1,4 @@
-package com.sg.bankApp.service;
+package com.hm.bankApp.service;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;

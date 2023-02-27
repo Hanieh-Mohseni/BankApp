@@ -1,4 +1,4 @@
-package com.sg.bankApp.model;
+package com.hm.bankApp.model;
 
 public enum Status {
     ACTIVE,

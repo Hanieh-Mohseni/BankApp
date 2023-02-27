@@ -1,4 +1,4 @@
-package com.sg.bankApp.service;
+package com.hm.bankApp.service;
 
 public class NotFoundException extends RuntimeException {
 

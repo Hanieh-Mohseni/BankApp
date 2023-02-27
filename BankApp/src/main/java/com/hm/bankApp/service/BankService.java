@@ -1,14 +1,14 @@
-package com.sg.bankApp.service;
+package com.hm.bankApp.service;
 
-import com.sg.bankApp.entity.Account;
-import com.sg.bankApp.entity.Transaction;
-import com.sg.bankApp.entity.User;
-import com.sg.bankApp.model.Operation;
-import com.sg.bankApp.model.Status;
-import com.sg.bankApp.model.TransType;
-import com.sg.bankApp.repository.AccountRepository;
-import com.sg.bankApp.repository.TransactionRepository;
-import com.sg.bankApp.repository.UserRepository;
+import com.hm.bankApp.entity.Account;
+import com.hm.bankApp.entity.Transaction;
+import com.hm.bankApp.entity.User;
+import com.hm.bankApp.repository.AccountRepository;
+import com.hm.bankApp.repository.TransactionRepository;
+import com.hm.bankApp.repository.UserRepository;
+import com.hm.bankApp.model.Operation;
+import com.hm.bankApp.model.Status;
+import com.hm.bankApp.model.TransType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;

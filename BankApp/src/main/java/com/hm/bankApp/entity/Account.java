@@ -1,14 +1,13 @@
-package com.sg.bankApp.entity;
+package com.hm.bankApp.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.sg.bankApp.model.Status;
+import com.hm.bankApp.model.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.Date;
 
 

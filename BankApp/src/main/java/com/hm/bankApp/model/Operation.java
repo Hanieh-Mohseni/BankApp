@@ -1,4 +1,4 @@
-package com.sg.bankApp.model;
+package com.hm.bankApp.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
