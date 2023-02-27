@@ -1,36 +1,25 @@
 package com.sg.bankApp.controller;
 
-import ch.qos.logback.core.model.Model;
-import com.sg.bankApp.model.User;
-import com.sg.bankApp.repository.AccountRepo;
-import com.sg.bankApp.repository.TransactionRepo;
-import com.sg.bankApp.repository.UserRepo;
+import com.sg.bankApp.entity.User;
+import com.sg.bankApp.repository.AccountRepository;
+import com.sg.bankApp.repository.TransactionRepository;
+import com.sg.bankApp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 public class Controller {
     @Autowired
-    UserRepo users;
+    UserRepository user;
 
     @Autowired
-    AccountRepo accounts;
+    AccountRepository account;
 
     @Autowired
-    TransactionRepo transactions;
+    TransactionRepository transaction;
 
 
-    @GetMapping(value="/")
-    public String getPage() {
-        
-        return "SignUp";
-    }
 
-    @PostMapping("/addUser")
-    public String addStore(User user) {
-        users.save(user);
-        return "redirect:/";
-    }
 
 
 

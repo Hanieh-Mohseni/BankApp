@@ -1,0 +1,13 @@
+package com.sg.bankApp.repository;
+
+import com.sg.bankApp.entity.Account;
+import com.sg.bankApp.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface AccountRepository extends JpaRepository<Account,Integer> {
+    List<Account> findAllByUser(User user);
+}
