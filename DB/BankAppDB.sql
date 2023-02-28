@@ -14,7 +14,7 @@ CREATE TABLE `User` (
   `Phone` varchar(20) not null,
   `Address` varchar(20) not null,
   `OpenDate` datetime not null,
-  `Email` varchar(20) not null,
+  `Email` varchar(20),
   `LoginName` varchar(20) not null,
   `Password` varchar(20) not null,
   PRIMARY KEY (`ID`)
