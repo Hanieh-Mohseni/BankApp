@@ -95,6 +95,9 @@ const Logindiv = styled.div`
   justify-content: center;
   background-size: cover;
   background-color: #333333;
+  @media (max-width:550px){
+        flex-direction: column-reverse;
+    }
 `;
 
 const LoginSpan = styled.span`

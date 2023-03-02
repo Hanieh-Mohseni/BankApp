@@ -53,6 +53,15 @@ const Wrapper = styled.div`
   align-items: center;
   font-family: "Josefin Sans", sans-serif;
   z-index: 999;
+  overflow: hidden;
+  @media (max-width:550px){
+        position: static;
+        .content{
+            ul{
+                display: none;
+            }
+        }
+    }
 `;
 
 const TopLeft = styled.div`

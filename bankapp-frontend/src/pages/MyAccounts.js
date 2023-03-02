@@ -19,6 +19,7 @@ const MyAccounts = () => {
   const [message, setMessage] = useState(null);
   // const { token } = useContext(UserConstext);
 
+
   const retrieveData = () => {
     // const user = JSON.parse(localStorage.getItem('user'));
     var token = localStorage.getItem('token');
@@ -57,6 +58,61 @@ const MyAccounts = () => {
     retrieveData();
   }, []);
 
+  function depositFunction() {
+
+    let lastStatus;
+    let errMsg;
+    let text;
+    let deposit = prompt({
+      title: 'Please Enter the Deposit Amount',
+      message: 'Please Enter the Deposit Amount.',
+      placeholder: 'Amount for deposit',
+      inputType: 'text'
+  });
+  if (deposit == null || deposit === "") {
+    text = "User cancelled the deposit.";
+  } else {
+    text = deposit + "as a deposit was made " ;
+  }
+
+  //console.log("deposit:" + deposit);
+  
+    fetch("http://localhost:8080/api/v1/auth/authenticate", {
+      method: "POST",
+      body: JSON.stringify({
+        amount: deposit,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        lastStatus = res.status;
+        errMsg = res.msg;
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        if (lastStatus === 501) {
+          alert(errMsg);
+        }
+
+        if (lastStatus === 200) {
+          console.log(data.token);
+          console.log(data.userId);
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("userId", data.userId);
+                   
+        }
+      })
+      .catch((err) => {
+        console.log("we have a problem " + err.message);
+      });
+  };
+    
+    
+  
+
   return (
     <Wrapper>
       <FormDiv>
@@ -64,7 +120,7 @@ const MyAccounts = () => {
           <Mydiv>Acconts Info</Mydiv>
           <table className="table border shadow">
             <thead>
-              <tr>
+              <Mytr>
                 <th scope="col">Id</th>
                 <th scope="col">Name</th>
                 <th scope="col">Number</th>
@@ -72,31 +128,38 @@ const MyAccounts = () => {
                 <th scope="col">Balance</th>
                 <th scope="col">Opendate</th>
                 <th scope="col">Status</th>
-              </tr>
+                <th scope="col">Actions</th>
+              </Mytr>
             </thead>
             <tbody>
               {accounts != null && accounts.map((account, index) => (
-                <tr key={account.id}>
-                  <td>{index + 1}</td>
-                  <td>{account.name}</td>
-                  <td>{account.number}</td>
-                  <td>{account.type}</td>
-                  <td>{account.balance}</td>
-                  <td>{account.opendate}</td>
-                  <td>{account.status}</td>
-                  <td>
+                <Mytr key={account.id}>
+                  <Mytd>{index + 1}</Mytd>
+                  <Mytd>{account.name}</Mytd>
+                  <Mytd>{account.number}</Mytd>
+                  <Mytd>{account.type}</Mytd>
+                  <Mytd>{account.balance}</Mytd>
+                  <Mytd>{account.opendate}</Mytd>
+                  <Mytd>{account.status}</Mytd>
+                  <Mytd>
                     <Link
                       className="btn btn-primary mx-2"
                       to={`/accountDetail/${account.id}`}
                     >
                       Detail
                     </Link>
-                    <Link
+
+
+
+
+                    <button onClick={depositFunction}>Deposit</button>
+
+                    {/* <Link
                       className="btn btn-outline-primary mx-2"
                       to={`/deposit/${account.id}`}
                     >
                       Deposit
-                    </Link>
+                    </Link> */}
                     <Link
                       className="btn btn-outline-primary mx-2"
                       to={`/withdraw/${account.id}`}
@@ -104,8 +167,8 @@ const MyAccounts = () => {
                       withdraw
                     </Link>
 
-                  </td>
-                </tr>
+                  </Mytd>
+                </Mytr>
               ))}
             </tbody>
           </table>
@@ -125,6 +188,22 @@ const Mydiv = styled.div`
   font-weight: 900px;
   margin-bottom: 30px;
   font-size: 22px;
+  
+`;
+
+const Mytr = styled.tr`
+justify-content: space-around;
+margin-left:20px;
+color:white;
+align-items: center;
+font-size: 18px;
+`;
+
+const Mytd = styled.td`
+color:white;
+justify-content: space-around;
+padding: 10px;
+
 `;
 
 const Wrapper = styled.div`
@@ -141,13 +220,21 @@ const Wrapper = styled.div`
   overflow-x: hidden;
   top: 50%;
   left: 50%;
+  @media (max-width:650px){
+        position: static;
+        .content{
+            ul{
+                display: none;
+            }
+        }
+    }
 `;
 
 const FormDiv = styled.div``;
 
 const Form = styled.form`
-  height: 380px;
-  width: 350px;
+  height: 350px;
+  width: 650px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -169,9 +256,10 @@ const MessageLabel = styled.label`
   color: white;
   margin-left: 2px;
   display: block;
-  font-weight: 400;
-  color: white;
-`;
+  font-weight: 300;
+  font-size:20px;
+  margin-top: 160px;
+ `;
 
 const Button = styled.button`
   position: relative;

@@ -136,12 +136,15 @@ const Register = () => {
 };
 
 const Registerdiv = styled.div`
-  height: calc(100vh );
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: #333333;
+  @media (max-width:550px){
+        flex-direction: column-reverse;
+    }
 
 `;
 
