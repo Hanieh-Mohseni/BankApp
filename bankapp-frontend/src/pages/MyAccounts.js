@@ -18,11 +18,12 @@ const MyAccounts = () => {
   const { userId } = useParams();
   const [message, setMessage] = useState(null);
   // const { token } = useContext(UserConstext);
+  const token = localStorage.getItem('token');
 
 
   const retrieveData = () => {
     // const user = JSON.parse(localStorage.getItem('user'));
-    var token = localStorage.getItem('token');
+    
     console.log(token);
     var userId = localStorage.getItem('userId');
     var lastStatus;
@@ -74,15 +75,18 @@ const MyAccounts = () => {
   } else {
     text = deposit + "as a deposit was made " ;
   }
-
-  //console.log("deposit:" + deposit);
+    alert(deposit);
+  console.log("deposit:" + deposit);
   
     fetch("http://localhost:8080/api/operation", {
       method: "POST",
       body: JSON.stringify({
-        amount: deposit,
+        accountId: 1,
+        action: 'DEPOSIT',
+        amount: deposit        
       }),
       headers: {
+        "Authorization": 'Bearer ' + token,
         "Content-Type": "application/json",
       },
     })
