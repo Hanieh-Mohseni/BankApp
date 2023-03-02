@@ -77,7 +77,7 @@ const MyAccounts = () => {
 
   //console.log("deposit:" + deposit);
   
-    fetch("http://localhost:8080/api/v1/auth/authenticate", {
+    fetch("http://localhost:8080/api/operation", {
       method: "POST",
       body: JSON.stringify({
         amount: deposit,
