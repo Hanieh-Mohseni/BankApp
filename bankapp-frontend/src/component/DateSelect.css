@@ -9,7 +9,8 @@
   background-color: white;
   display: flex;
   justify-content: right;
-  width: 230px;
+  width: 208px;
+  height: 25px;
   margin-right: 14px;
 }
 .react-datepicker-wrapper {

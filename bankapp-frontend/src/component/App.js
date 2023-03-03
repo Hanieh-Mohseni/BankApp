@@ -10,6 +10,7 @@ import Transfer from "../pages/Transfer";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { UserContext } from './UserContext';
 import { useState, useContext } from 'react';
+import AccountDetailes from "../pages/AccountDetailes";
 
 
 const App=()=> {
@@ -34,8 +35,7 @@ const App=()=> {
         <Route path="/transfer" element={<Transfer />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/transfer/:accountId" element={<Transfer />} />
-
-
+        <Route path="/accountDetail/:accountId" element={<AccountDetailes />} />
 
 
         </Routes>

@@ -7,7 +7,7 @@ import { UserContext } from "../component/UserContext";
 
 
 
-const MyAccounts = () => {
+const AccountDetailes = () => {
   const [accounts, setAccounts] = useState(null);
   const [name, setName] = useState(null);
   const [number, setNember] = useState(null);
@@ -179,7 +179,7 @@ console.log("deposit:" + withdraw);
     <Wrapper>
       <FormDiv>
         <Form>
-          <Mydiv>Acconts Info</Mydiv>
+          <Mydiv>Acconts Detailes</Mydiv>
           <table className="table border shadow">
             <thead>
               <Mytr>
@@ -188,7 +188,8 @@ console.log("deposit:" + withdraw);
                 <th scope="col">Number</th>
                 <th scope="col">Type</th>
                 <th scope="col">Balance</th>
-                <th scope="col">Actions</th>
+                <th scope="col">Status</th>
+                <th scope="col">OpenDate</th>
               </Mytr>
             </thead>
             <tbody>
@@ -199,19 +200,9 @@ console.log("deposit:" + withdraw);
                   <Mytd>{account.number}</Mytd>
                   <Mytd>{account.type}</Mytd>
                   <Mytd>{account.balance}</Mytd>
-                  <Mytd>
-                    <Link
-                      className="btn btn-primary mx-2"
-                      to={`/accountDetail/${account.id}`}
-                    >
-                      Detail
-                    </Link>
-
-                    <button onClick={depositFunction}>Deposit</button>
-                    <button onClick={withdrawFunction}>Withdraw</button>
-
-                  </Mytd>
-                </Mytr>
+                  <Mytd>{account.status}</Mytd>
+                  <Mytd>{account.opendate}</Mytd>
+                 </Mytr>
               ))}
             </tbody>
           </table>
@@ -327,4 +318,4 @@ const Button = styled.button`
 `;
 
 
-export default MyAccounts
+export default AccountDetailes
