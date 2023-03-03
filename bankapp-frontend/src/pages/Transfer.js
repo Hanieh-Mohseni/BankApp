@@ -128,7 +128,7 @@ onChange={(ev) => {
         <Transferinput
           type="text"
           name="Amount"
-          placeholder="Enter Your Amount to Transfer..."
+          placeholder="Enter Your Amount..."
           onChange={(e) => setAmount(e.target.value)}
         />
 
@@ -139,8 +139,12 @@ onChange={(ev) => {
 }
 
 const DateDiv = styled.div`
-  margin-right: 15px;
+  /* margin-right: 15px; */
   margin-top: -25px;
+  padding: 10px;
+width:50px;
+margin-left: -30px;
+
 `;
 
 const Wrap = styled.select`
@@ -188,13 +192,18 @@ const TransferButton = styled.button`
 const Transferform = styled.form`
   margin-top: 20px;
   display: flex;
+  height: 330px;
+  width: 250px;
   flex-direction: column;
+    @media (max-width:550px){
+        flex-direction: column-reverse;
+    }
 `;
 
 const Transferdiv = styled.div`
   height: 100%;
-  width: 500px;
-  margin-left: 400px;
+  width: 300px;
+  margin-left: 10px;
   margin-top: 100px;
   display: flex;
   flex-direction: column;
@@ -204,6 +213,8 @@ const Transferdiv = styled.div`
   @media (max-width:550px){
         flex-direction: column-reverse;
     }
+
+    
 
 `;
 
