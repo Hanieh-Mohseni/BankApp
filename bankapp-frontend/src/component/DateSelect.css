@@ -1,0 +1,19 @@
+.react-datepicker__input-container input {
+  margin: 0 auto;
+  color: black;
+  padding: 5px 20px;
+  display: block;
+  width: 100%;
+  align-items: center;
+  margin-top: 5px;
+  background-color: white;
+  display: flex;
+  justify-content: right;
+  width: 230px;
+  margin-right: 14px;
+}
+.react-datepicker-wrapper {
+  display: block;
+  margin: 0 auto;
+  align-items: center;
+}

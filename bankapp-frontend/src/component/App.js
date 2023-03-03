@@ -6,8 +6,6 @@ import Logout from "../pages/Logout"
 import Register from "../pages/Register";
 import MyAccounts from "../pages/MyAccounts"
 import Profile from "../pages/Profile";
-import Deposit from "../pages/Deposit";
-import Withdraw from "../pages/Withdraw";
 import Transfer from "../pages/Transfer";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { UserContext } from './UserContext';
@@ -33,9 +31,8 @@ const App=()=> {
         <Route path="/logout" element={<Logout />} />
         <Route path="/register" element={<Register />} />
         <Route path="/accounts" element={<MyAccounts />} />
+        <Route path="/transfer" element={<Transfer />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/deposit/:accountId" element={<Deposit />} />
-        <Route path="/withdraw/:accountId" element={<Withdraw />} />
         <Route path="/transfer/:accountId" element={<Transfer />} />
 
 
