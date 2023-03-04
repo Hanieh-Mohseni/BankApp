@@ -80,7 +80,7 @@ const CreatAccount = () => {
         setType(ev.target.value);
       }}
     >
-      <Item value="SAVE">SAVE</Item>
+      <Item value="SAVE">SAVING</Item>
       <Item value="CHECK">CHECK</Item>
       
     </Wrap>

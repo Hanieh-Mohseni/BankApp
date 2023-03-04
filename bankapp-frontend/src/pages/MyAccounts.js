@@ -65,18 +65,13 @@ function withdrawFunction(){
   let lastStatus;
   let errMsg;
   let text;
-  let withdraw = prompt({
-    title: 'Please Enter the Withdraw Amount',
-    message: 'Please Enter the Withdraw Amount.',
-    placeholder: 'Amount for withdraw',
-    inputType: 'text'
-});
+  const withdraw = prompt('Please Enter the Withdraw Amount');
 if (withdraw == null || withdraw === "") {
   text = "User cancelled the withdraw.";
 } else {
-  text = withdraw + "as a withdraw was made " ;
-}
-  alert(withdraw);
+  text = withdraw + " was made as a withdraw" ;
+  }
+    alert(withdraw +text);
 console.log("deposit:" + withdraw);
 
   fetch("http://localhost:8080/api/operation", {
@@ -122,18 +117,13 @@ console.log("deposit:" + withdraw);
     let lastStatus;
     let errMsg;
     let text;
-    let deposit = prompt({
-      title: 'Please Enter the Deposit Amount',
-      message: 'Please Enter the Deposit Amount.',
-      placeholder: 'Amount for deposit',
-      inputType: 'text'
-  });
+    let deposit = prompt('Please Enter the Deposit Amount');
   if (deposit == null || deposit === "") {
     text = "User cancelled the deposit.";
   } else {
-    text = deposit + "as a deposit was made " ;
+    text = deposit + " was made as a deposit" ;
   }
-    alert(deposit);
+    alert(deposit +text);
   console.log("deposit:" + deposit);
   
     fetch("http://localhost:8080/api/operation", {
