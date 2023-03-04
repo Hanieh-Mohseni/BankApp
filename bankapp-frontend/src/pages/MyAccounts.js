@@ -71,8 +71,8 @@ if (withdraw == null || withdraw === "") {
 } else {
   text = withdraw + " was made as a withdraw" ;
   }
-    alert(withdraw +text);
-console.log("deposit:" + withdraw);
+    alert(text);
+//console.log("deposit:" + withdraw);
 
   fetch("http://localhost:8080/api/operation", {
     method: "POST",
@@ -123,8 +123,8 @@ console.log("deposit:" + withdraw);
   } else {
     text = deposit + " was made as a deposit" ;
   }
-    alert(deposit +text);
-  console.log("deposit:" + deposit);
+    alert(text);
+  //console.log("deposit:" + deposit);
   
     fetch("http://localhost:8080/api/operation", {
       method: "POST",
