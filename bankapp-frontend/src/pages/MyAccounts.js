@@ -61,7 +61,7 @@ const MyAccounts = () => {
 
 
 
-function withdrawFunction(){
+function withdrawFunction(id){
   let lastStatus;
   let errMsg;
   let text;
@@ -77,7 +77,7 @@ console.log("deposit:" + withdraw);
   fetch("http://localhost:8080/api/operation", {
     method: "POST",
     body: JSON.stringify({
-      accountId: 1,
+      accountId: id,
       action: 'WITHDRAW',
       amount: withdraw        
     }),
@@ -112,7 +112,7 @@ console.log("deposit:" + withdraw);
 }
 
 
-  function depositFunction() {
+  function depositFunction(id) {
 
     let lastStatus;
     let errMsg;
@@ -129,7 +129,7 @@ console.log("deposit:" + withdraw);
     fetch("http://localhost:8080/api/operation", {
       method: "POST",
       body: JSON.stringify({
-        accountId: 1,
+        accountId: id,
         action: 'DEPOSIT',
         amount: deposit        
       }),
@@ -197,8 +197,8 @@ console.log("deposit:" + withdraw);
                       Detail
                     </Link>
 
-                    <button onClick={depositFunction}>Deposit</button>
-                    <button onClick={withdrawFunction}>Withdraw</button>
+                    <button onClick={depositFunction(account.id)}>Deposit</button>
+                    <button onClick={withdrawFunction(account.id)}>Withdraw</button>
 
                   </Mytd>
                 </Mytr>
