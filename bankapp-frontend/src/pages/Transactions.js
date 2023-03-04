@@ -5,19 +5,60 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../component/UserContext";
 
 
+
 const Transactions=()=> {
 
-    const [accounts, setAccounts] = useState(null);
-    const [type, setName] = useState(null);
-    const [amount, setNember] = useState(null);
-    const [description, setType] = useState();
-    const [balance, setBalance] = useState(null);
-    const [opendate, setOpendate] = useState(null);
-    const [status, setStatus] = useState(null);
-    const { userId } = useParams();
+    const [type, setType] = useState(null);
+    const [amount, setNsetAmountember] = useState(null);
+    const [description, setDescription] = useState();
+    const [fromAccount, setFromAccount] = useState(null);
+    const [toAccount, setToAccount] = useState(null);
+    const [transactions,setTransactions] = useState(null);
+    const { accountId } = useParams();
     const [message, setMessage] = useState(null);
     // const { token } = useContext(UserConstext);
     const token = localStorage.getItem('token');
+
+
+
+
+    const retrieveData = () => {
+        
+       // console.log(token);
+        let userId = localStorage.getItem('userId');
+        let lastStatus;
+    
+        fetch(`http://localhost:8080/api/transaction/account/${accountId}`, {
+          "method": "GET",
+          "timeout": 0,
+          "headers": { 
+            "Authorization": 'Bearer ' + token
+          }
+        })
+        .then((resp) => {
+          lastStatus = resp.status;
+          return resp.json();
+        })
+        .then((data) => {
+          setTransactions(data);
+    
+        })
+        .catch((err) => {
+          console.log(err);
+          if (lastStatus===401) {
+            setMessage("The token maybe is expired or invalid, please login again.")
+            return;
+          }
+          // console.log("we have a problem " + err.message);
+          setMessage("we have a problem " + err.message);
+        });
+    
+      };
+    
+      useEffect(() => {
+        retrieveData();
+      }, []);
+    
 
   return (
     <TransactionDiv>
@@ -33,20 +74,18 @@ const Transactions=()=> {
                 <th scope="col">Description</th>
                 <th scope="col">From Account</th>
                 <th scope="col">To Account</th>
-                <th scope="col">Account Number</th>
-
               </Mytr>
             </thead>
             <tbody>
-              {accounts != null && accounts.map((account, index) => (
-                <Mytr key={account.id}>
+              {transactions != null && transactions.map((transaction, index) => (
+                <Mytr key={transaction.id}>
                   <Mytd>{index + 1}</Mytd>
-                  <Mytd>{account.type}</Mytd>
-                  <Mytd>{account.Amount}</Mytd>
-                  <Mytd>{account.description}</Mytd>
-                  <Mytd>{account.fromAccount}</Mytd>
-                  <Mytd>{account.toAccount}</Mytd>
-                  <Mytd>{account.number}</Mytd>
+                  <Mytd>{transaction.type}</Mytd>
+                  <Mytd>{transaction.Amount}</Mytd>
+                  <Mytd>{transaction.description}</Mytd>
+                  <Mytd>{transaction.fromAccount}</Mytd>
+                  <Mytd>{transaction.toAccount}</Mytd>
+                  <Mytd>{transaction.number}</Mytd>
 
                   
                 </Mytr>

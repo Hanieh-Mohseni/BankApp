@@ -16,6 +16,8 @@ const Topbar = () => {
             <NavigationLink to="/create">CREATE</NavigationLink>
             <NavigationLink to="/accounts">ACCOUNTS</NavigationLink>
             <NavigationLink to="/transfer">TRANSFER</NavigationLink>
+            <NavigationLink to="/transaction">TRANSACTIONS</NavigationLink>
+
             <NavigationLink to="/profile">PROFILE</NavigationLink>
 
           </LiDiv>
