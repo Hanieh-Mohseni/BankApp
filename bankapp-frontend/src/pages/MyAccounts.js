@@ -250,26 +250,14 @@ padding: 10px;
 `;
 
 const Wrapper = styled.div`
-  height: calc(100vh - 60px);
-  z-index: -1;
+  height: calc(100vh - 50px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  overflow-y: hidden;
-  overflow-x: hidden;
-  top: 50%;
-  left: 50%;
-  @media (max-width:650px){
-        position: static;
-        .content{
-            ul{
-                display: none;
-            }
-        }
+  background-color: #333333;
+  @media (max-width:550px){
+        flex-direction: column-reverse;
     }
 `;
 

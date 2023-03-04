@@ -52,9 +52,12 @@ public class BankService {
 
     public Account createAccount(Account account) {
         User user = userRepository.findById(account.getUser().getId()).orElseThrow();
+        List<Account> list = accountRepository.findAllByUser(user);
         account.setBalance(new BigDecimal("0"));
         account.setStatus(Status.ACTIVE);
         account.setUser(user);
+        account.setOpendate(new Date());
+        account.setNumber(user.getId() * 10000 + list.size() + 1);
         return accountRepository.save(account);
     }
 

@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { UserContext } from './UserContext';
 import { useState, useContext } from 'react';
 import AccountDetailes from "../pages/AccountDetailes";
+import CreatAccount from "../pages/CreatAccount";
 
 
 const App=()=> {
@@ -33,6 +34,7 @@ const App=()=> {
         <Route path="/register" element={<Register />} />
         <Route path="/accounts" element={<MyAccounts />} />
         <Route path="/transfer" element={<Transfer />} />
+        <Route path="/create" element={<CreatAccount />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/transfer/:accountId" element={<Transfer />} />
         <Route path="/accountDetail/:accountId" element={<AccountDetailes />} />

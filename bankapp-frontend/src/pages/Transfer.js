@@ -113,16 +113,6 @@ onChange={(ev) => {
   : null}
 </Wrap2>
 
-<DateDiv>
-              <DateSelect
-                placeholder="Transfer Date"
-                selectedDate={transactiondate}
-                setselectedDate={(date) => {
-                  setTransactiondate(date);
-                }}
-                value={transactiondate != null ? transactiondate : ""}
-              />
-            </DateDiv>
 
 {/* <Transferlabel>Amount</Transferlabel> */}
         <Transferinput
@@ -201,10 +191,7 @@ const Transferform = styled.form`
 `;
 
 const Transferdiv = styled.div`
-  height: 100%;
-  width: 300px;
-  margin-left: 10px;
-  margin-top: 100px;
+height: calc(100vh - 50px);
   display: flex;
   flex-direction: column;
   align-items: center;
