@@ -61,10 +61,13 @@ const MyAccounts = () => {
 
 
 
-function withdrawFunction(id){
+function withdrawFunction(e){
   let lastStatus;
   let errMsg;
   let text;
+  let id = e.currentTarget.dataset.id;
+  console.log(id);
+
   const withdraw = prompt('Please Enter the Withdraw Amount');
 if (withdraw == null || withdraw === "") {
   text = "User cancelled the withdraw.";
@@ -97,13 +100,13 @@ if (withdraw == null || withdraw === "") {
         alert(errMsg);
       }
 
-      if (lastStatus === 200) {
-        console.log(data.token);
-        console.log(data.userId);
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("userId", data.userId);
+      // if (lastStatus === 200) {
+      //   console.log(data.token);
+      //   console.log(data.userId);
+      //   localStorage.setItem("token", data.token);
+      //   localStorage.setItem("userId", data.userId);
                  
-      }
+      // }
     })
     .catch((err) => {
       console.log("we have a problem " + err.message);
@@ -112,19 +115,24 @@ if (withdraw == null || withdraw === "") {
 }
 
 
-  function depositFunction(id) {
+  const depositFunction =(e) => {
 
     let lastStatus;
     let errMsg;
     let text;
+    let id = e.currentTarget.dataset.id;
+
     let deposit = prompt('Please Enter the Deposit Amount');
+    console.log("deposit:" + deposit);
+    console.log("id:" + id);
   if (deposit == null || deposit === "") {
     text = "User cancelled the deposit.";
   } else {
     text = deposit + " was made as a deposit" ;
   }
     alert(text);
-  //console.log("deposit:" + deposit);
+  console.log("deposit:" + deposit);
+  console.log("id:" + id);
   
     fetch("http://localhost:8080/api/operation", {
       method: "POST",
@@ -149,13 +157,6 @@ if (withdraw == null || withdraw === "") {
           alert(errMsg);
         }
 
-        if (lastStatus === 200) {
-          console.log(data.token);
-          console.log(data.userId);
-          localStorage.setItem("token", data.token);
-          localStorage.setItem("userId", data.userId);
-                   
-        }
       })
       .catch((err) => {
         console.log("we have a problem " + err.message);
@@ -197,8 +198,8 @@ if (withdraw == null || withdraw === "") {
                       Detail
                     </Link>
 
-                    <button onClick={depositFunction(account.id)}>Deposit</button>
-                    <button onClick={withdrawFunction(account.id)}>Withdraw</button>
+                    <button onClick={depositFunction.bind(this)} data-id={account.id}>Deposit</button>
+                    <button onClick={withdrawFunction.bind(this)} data-id={account.id}>Withdraw</button>
 
                   </Mytd>
                 </Mytr>

@@ -28,7 +28,7 @@ const Transactions=()=> {
         let userId = localStorage.getItem('userId');
         let lastStatus;
     
-        fetch(`http://localhost:8080/api/transaction/account/${accountId}`, {
+        fetch(`http://localhost:8080/api/transaction/account/${accountId}?page=10&size=10`, {
           "method": "GET",
           "timeout": 0,
           "headers": { 
