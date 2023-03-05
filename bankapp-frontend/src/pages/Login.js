@@ -49,7 +49,7 @@ const Login = () => {
           localStorage.setItem("userId", data.userId);
           setToken(data.token);
           setUserId(data.userId);
-          navigate("/accounts");
+          navigate("/profile");
         }
       })
       .catch((err) => {

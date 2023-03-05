@@ -81,7 +81,7 @@ const CreatAccount = () => {
       }}
     >
       <Item value="SAVE">SAVING</Item>
-      <Item value="CHECK">CHECK</Item>
+      <Item value="CHEQUING">CHEQUING</Item>
       
     </Wrap>
 

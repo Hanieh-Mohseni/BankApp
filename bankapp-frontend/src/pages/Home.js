@@ -18,13 +18,20 @@ const Home=()=> {
 
 const Homediv = styled.div`
 
-height: 50vh ;
+/* height: calc(100vh - 50px); */
+height:auto;
+/* width: 100%; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #333333;
+  @media (max-width:550px){
+        flex-direction: column-reverse;
+    }
 
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-background-image:  url(${backgroundOrange});
+ background-image:  url(${backgroundOrange}); 
+ 
 background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
