@@ -8,7 +8,10 @@ const Logout = () => {
   const navigate = useNavigate();
   navigate("/login");
 
-  return <div></div>;
+
+  return <div>
+
+  </div>;
 };
 
 export default Logout;

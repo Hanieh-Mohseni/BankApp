@@ -6,15 +6,19 @@ import { useNavigate } from "react-router";
 import { UserContext } from "../component/UserContext";
 
 const Login = () => {
-  const [loginname, setLoginname] = useState(
-    localStorage.getItem("Current_User")
-  );
+  // const [loginname, setLoginname] = useState(
+  //   localStorage.getItem("Current_User")
+  // );
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const { user, setUser } = useContext(UserContext);
   const { userId, setUserId } = useContext(UserContext);
   const { token, setToken } = useContext(UserContext);
-  // const {loginname,setLoginname} = useContext(UserContext);
+
+  // const {user, setUser} = useContext(UserConstext)
+  const {loginname, setLoginname} = useContext(UserContext)
+  
+
+
   var lastStatus;
   var errMsg;
 
