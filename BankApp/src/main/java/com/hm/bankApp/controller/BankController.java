@@ -1,9 +1,9 @@
 package com.hm.bankApp.controller;
 
-import com.hm.bankApp.entity.Transaction;
 import com.hm.bankApp.entity.Account;
+import com.hm.bankApp.entity.Transaction;
 import com.hm.bankApp.entity.User;
-import com.hm.bankApp.model.Operation;
+import com.hm.bankApp.model.*;
 import com.hm.bankApp.service.BankService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -44,7 +44,7 @@ public class BankController {
     @ResponseStatus(HttpStatus.CREATED)
     public String transferMoney(@RequestBody Transaction transaction) {
         service.transfer(transaction);
-        return "Money is transferred.";
+        return "Money is transfered.";
     }
 
     @GetMapping("/user/{userId}")
@@ -67,10 +67,11 @@ public class BankController {
     }
 
     @GetMapping("/transaction/account/{accountId}")
-    public List<Transaction> displayTransactionsByAccountId(@PathVariable int accountId,
+    public List<TransactionModel> displayTransactionsByAccountId(@PathVariable int accountId,
                                                             @RequestParam int page, @RequestParam int size) {
 
         return service.displayTransactionsByAccountId(accountId, page, size);
     }
+
 
 }

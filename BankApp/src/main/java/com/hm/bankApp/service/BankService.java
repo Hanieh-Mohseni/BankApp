@@ -3,35 +3,37 @@ package com.hm.bankApp.service;
 import com.hm.bankApp.entity.Account;
 import com.hm.bankApp.entity.Transaction;
 import com.hm.bankApp.entity.User;
+import com.hm.bankApp.model.*;
 import com.hm.bankApp.repository.AccountRepository;
 import com.hm.bankApp.repository.TransactionRepository;
 import com.hm.bankApp.repository.UserRepository;
-import com.hm.bankApp.model.Operation;
-import com.hm.bankApp.model.Status;
-import com.hm.bankApp.model.TransType;
 import lombok.RequiredArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
 public class BankService {
-
     @Autowired
-    UserRepository userRepository;
-
+    private AccountRepository accountRepository;
     @Autowired
-    AccountRepository accountRepository;
-
+    private TransactionRepository transactionRepository;
     @Autowired
-    TransactionRepository transactionRepository;
+    private UserRepository userRepository;
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
 
     public User createUser(User user) {
         return userRepository.save(user);
@@ -69,6 +71,7 @@ public class BankService {
 
         accountFrom.setBalance(accountFrom.getBalance().subtract(transaction.getAmount()));
         accountTo.setBalance(accountTo.getBalance().add(transaction.getAmount()));
+        transaction.setTransactiondate(new Date());
         accountRepository.save(accountFrom);
         accountRepository.save(accountTo);
 
@@ -80,10 +83,23 @@ public class BankService {
 
     }
 
-    public List<Transaction> displayTransactionsByAccountId(int accountId, int page, int size) {
+    public List<TransactionModel> displayTransactionsByAccountId(int accountId, int page, int size) {
         Account account = accountRepository.findById(accountId).orElseThrow();
         Pageable paging = PageRequest.of(page, size);
-        return transactionRepository.findByFromaccount(account, paging);
+        List<Transaction> list = transactionRepository.findByFromaccount(account, paging);
+        List<TransactionModel> result = new ArrayList<>();
+        for (Transaction obj : list) {
+            TransactionModel model = new TransactionModel();
+            model.setId(obj.getId());
+            model.setAmount(obj.getAmount());
+            model.setType(obj.getType());
+            model.setFromaccount(obj.getFromaccount().getID());
+            if (obj.getToaccount()!=null) model.setToaccount(obj.getToaccount().getID());
+            model.setDescription(obj.getDescription());
+            result.add(model);
+        }
+
+        return result;
     }
 
     @Transactional
@@ -105,4 +121,6 @@ public class BankService {
         return transaction;
 
     }
+
+
 }

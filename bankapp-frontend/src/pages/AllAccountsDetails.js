@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
-import { Link,useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { UserContext } from "../component/UserContext";
 
 
 
 
-const MyAccounts = () => {
+const AllAccountsDetailes = () => {
   const [accounts, setAccounts] = useState(null);
   const [name, setName] = useState(null);
   const [number, setNember] = useState(null);
@@ -60,129 +60,11 @@ const MyAccounts = () => {
   }, []);
 
 
-
-function withdrawFunction(e){
-  let lastStatus;
-  let errMsg;
-  let text;
-  let id = e.currentTarget.dataset.id;
-  console.log(id);
-
-  const withdraw = prompt('Please Enter the Withdraw Amount');
-if (withdraw == null || withdraw === "") {
-  text = "User cancelled the withdraw.";
-} else {
-  text = withdraw + " was made as a withdraw" ;
-  }
-    alert(text);
-//console.log("deposit:" + withdraw);
-
-  fetch("http://localhost:8080/api/operation", {
-    method: "POST",
-    body: JSON.stringify({
-      accountId: id,
-      action: 'WITHDRAW',
-      amount: withdraw        
-    }),
-    headers: {
-      "Authorization": 'Bearer ' + token,
-      "Content-Type": "application/json",
-    },
-  })
-    .then((res) => {
-      lastStatus = res.status;
-      errMsg = res.msg;
-      return res.json();
-    })
-    .then((data) => {
-      console.log(data);
-      if (lastStatus === 501) {
-        alert(errMsg);
-      }
-
-      // if (lastStatus === 200) {
-      //   console.log(data.token);
-      //   console.log(data.userId);
-      //   localStorage.setItem("token", data.token);
-      //   localStorage.setItem("userId", data.userId);
-                 
-      // }
-    })
-    .catch((err) => {
-      console.log("we have a problem " + err.message);
-    });
-
-}
-
-
-  const depositFunction =(e) => {
-
-    let lastStatus;
-    let errMsg;
-    let text;
-    let id = e.currentTarget.dataset.id;
-
-    let deposit = prompt('Please Enter the Deposit Amount');
-    console.log("deposit:" + deposit);
-    console.log("id:" + id);
-  if (deposit == null || deposit === "") {
-    text = "User cancelled the deposit.";
-  } else {
-    text = deposit + " was made as a deposit" ;
-  }
-    alert(text);
-  console.log("deposit:" + deposit);
-  console.log("id:" + id);
-  
-    fetch("http://localhost:8080/api/operation", {
-      method: "POST",
-      body: JSON.stringify({
-        accountId: id,
-        action: 'DEPOSIT',
-        amount: deposit        
-      }),
-      headers: {
-        "Authorization": 'Bearer ' + token,
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => {
-        lastStatus = res.status;
-        errMsg = res.msg;
-        return res.json();
-      })
-      .then((data) => {
-        console.log(data);
-        if (lastStatus === 501) {
-          alert(errMsg);
-        }
-
-      })
-      .catch((err) => {
-        console.log("we have a problem " + err.message);
-      });
-  };
-
-  const navigate = useNavigate();
-    
- 
-  
-  const routeChange = (e) =>{ 
-    let path =  `/accountDetail/${e.currentTarget.dataset.id}`; 
-    navigate(path);
-  }
-
-  const transactionRoute = (e)=>{
-    let path = `/accountTransaction/${e.currentTarget.dataset.id}`;
-    navigate(path);
-  }
-  
-
   return (
     <Wrapper>
       <FormDiv>
         <Form>
-          <Mydiv>Acconts Info</Mydiv>
+          <Mydiv>Acconts Detailes</Mydiv>
           <table className="table border shadow">
             <thead>
               <Mytr>
@@ -191,7 +73,8 @@ if (withdraw == null || withdraw === "") {
                 <th scope="col">Number</th>
                 <th scope="col">Type</th>
                 <th scope="col">Balance</th>
-                <th scope="col">Actions</th>
+                <th scope="col">Status</th>
+                <th scope="col">OpenDate</th>
               </Mytr>
             </thead>
             <tbody>
@@ -202,15 +85,9 @@ if (withdraw == null || withdraw === "") {
                   <Mytd>{account.number}</Mytd>
                   <Mytd>{account.type}</Mytd>
                   <Mytd>{account.balance}</Mytd>
-                  <Lasttd>
-                    <Button onClick={routeChange.bind(this)} data-id={account.id}>Detail</Button>
-                    <Button onClick={depositFunction.bind(this)} data-id={account.id}>Deposit</Button>
-                    <Button onClick={withdrawFunction.bind(this)} data-id={account.id}>Withdraw</Button>
-                    <Button onClick={transactionRoute.bind(this)} data-id={account.id}>Transactions</Button>
-
-
-                  </Lasttd>
-                </Mytr>
+                  <Mytd>{account.status}</Mytd>
+                  <Mytd>{account.opendate}</Mytd>
+                 </Mytr>
               ))}
             </tbody>
           </table>
@@ -239,7 +116,6 @@ margin-left:20px;
 color:white;
 align-items: center;
 font-size: 18px;
-
 `;
 
 const Mytd = styled.td`
@@ -249,24 +125,27 @@ padding: 10px;
 
 `;
 
-const Lasttd = styled.td`
-color:white;
-justify-content: space-around;
-padding: 10px;
-display: flex;
-flex-direction: row;
-
-`;
-
 const Wrapper = styled.div`
-  height: calc(100vh - 50px);
+  height: calc(100vh - 60px);
+  z-index: -1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #333333;
-  @media (max-width:550px){
-        flex-direction: column-reverse;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  top: 50%;
+  left: 50%;
+  @media (max-width:650px){
+        position: static;
+        .content{
+            ul{
+                display: none;
+            }
+        }
     }
 `;
 
@@ -275,12 +154,12 @@ const FormDiv = styled.div`
 
 const Form = styled.form`
   height: 350px;
-  width: 650px;
+  width: 550px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* background: rgba(0, 0, 22, 0.8); */
+  background: rgba(0, 0, 22, 0.8);
   padding: 30px;
   margin: 10px;
   border: none;
@@ -323,12 +202,5 @@ const Button = styled.button`
   transition: box-shadow 0.5s ease;
 `;
 
-const MyLink = styled.link`
-color: white;
-font-size:15px ;
-padding: 10px;
-align-items: center;
-justify-content: center;
-`;
 
-export default MyAccounts
+export default AllAccountsDetailes

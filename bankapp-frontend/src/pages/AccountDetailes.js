@@ -8,15 +8,15 @@ import { UserContext } from "../component/UserContext";
 
 
 const AccountDetailes = () => {
-  const [accounts, setAccounts] = useState(null);
   const [name, setName] = useState(null);
-  const [number, setNember] = useState(null);
+  const [number, setNumber] = useState(null);
   const [type, setType] = useState();
   const [balance, setBalance] = useState(null);
   const [opendate, setOpendate] = useState(null);
   const [status, setStatus] = useState(null);
-  const { userId } = useParams();
   const [message, setMessage] = useState(null);
+  const { accountId } = useParams();
+
   // const { token } = useContext(UserConstext);
   const token = localStorage.getItem('token');
 
@@ -25,10 +25,9 @@ const AccountDetailes = () => {
     // const user = JSON.parse(localStorage.getItem('user'));
     
     console.log(token);
-    var userId = localStorage.getItem('userId');
     var lastStatus;
 
-    fetch(`http://localhost:8080/api/accounts/user/${userId}`, {
+    fetch(`http://localhost:8080/api/account/accountId`, {
       "method": "GET",
       "timeout": 0,
       "headers": { 
@@ -40,8 +39,13 @@ const AccountDetailes = () => {
       return resp.json();
     })
     .then((data) => {
-      setAccounts(data);
-
+      setName(data.name);
+      setNumber(data.number);
+      setType(data.type);
+      setBalance(data.balance);
+      setStatus(data.status);
+      setOpendate(data.opendate);
+           setMessage(data.message);
     })
     .catch((err) => {
       console.log(err);
@@ -62,71 +66,44 @@ const AccountDetailes = () => {
 
   return (
     <Wrapper>
-      <FormDiv>
-        <Form>
-          <Mydiv>Acconts Detailes</Mydiv>
-          <table className="table border shadow">
-            <thead>
-              <Mytr>
-                <th scope="col">Id</th>
-                <th scope="col">Name</th>
-                <th scope="col">Number</th>
-                <th scope="col">Type</th>
-                <th scope="col">Balance</th>
-                <th scope="col">Status</th>
-                <th scope="col">OpenDate</th>
-              </Mytr>
-            </thead>
-            <tbody>
-              {accounts != null && accounts.map((account, index) => (
-                <Mytr key={account.id}>
-                  <Mytd>{index + 1}</Mytd>
-                  <Mytd>{account.name}</Mytd>
-                  <Mytd>{account.number}</Mytd>
-                  <Mytd>{account.type}</Mytd>
-                  <Mytd>{account.balance}</Mytd>
-                  <Mytd>{account.status}</Mytd>
-                  <Mytd>{account.opendate}</Mytd>
-                 </Mytr>
-              ))}
-            </tbody>
-          </table>
+    <FormDiv>
+      <Form>
+        <Mydiv>Your Account Detailes</Mydiv>
+        <br />
+        <Label>Name: {name != null ? name : ""}</Label>
+        <br />
+        <Label>Namber: {number != null ? number : ""}</Label>
+        <br />
+        <Label>Type: {type != null ? type : ""}</Label>
+        <br />
+        <Label>Balance: {balance != null ? balance : ""}</Label>
+        <br />
+        <Label>Status: {status != null ? status : ""}</Label>
+        <br />
+        <Label>OpenDate: {opendate != null ? opendate : ""}</Label>
+        <br />
+     
+        <MessageLabel> {message} </MessageLabel>
 
-          <MessageLabel> {message} </MessageLabel>
+      </Form>
+    </FormDiv>
+  </Wrapper>
 
-        </Form>
-      </FormDiv>
-    </Wrapper>
-  )
+)
 }
 
 const Mydiv = styled.div`
   color: white;
   display: flex;
   align-items: center;
-  font-weight: 900px;
+  font-weight: 500px;
   margin-bottom: 30px;
   font-size: 22px;
   
 `;
 
-const Mytr = styled.tr`
-justify-content: space-around;
-margin-left:20px;
-color:white;
-align-items: center;
-font-size: 18px;
-`;
-
-const Mytd = styled.td`
-color:white;
-justify-content: space-around;
-padding: 10px;
-
-`;
-
 const Wrapper = styled.div`
-  height: calc(100vh - 60px);
+  height: calc(100vh - 180px);
   z-index: -1;
   display: flex;
   flex-direction: column;
@@ -137,15 +114,12 @@ const Wrapper = styled.div`
   background-size: cover;
   overflow-y: hidden;
   overflow-x: hidden;
-  top: 50%;
+  top: 20%;
   left: 50%;
-  @media (max-width:650px){
-        position: static;
-        .content{
-            ul{
-                display: none;
-            }
-        }
+  background-color: #333333;
+
+  @media (max-width:550px){
+        flex-direction: column-reverse;
     }
 `;
 
@@ -153,15 +127,15 @@ const FormDiv = styled.div`
 `;
 
 const Form = styled.form`
-  height: 350px;
-  width: 550px;
+  height: 400px;
+  width: 400px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgba(0, 0, 22, 0.8);
-  padding: 30px;
-  margin: 10px;
+  /* background: rgba(0, 0, 22, 0.8); */
+  padding: 10px;
+  margin-top: 5px;
   border: none;
   box-shadow: 0 0 10px rgba(0, 0, 0, 1);
 `;
@@ -178,7 +152,7 @@ const MessageLabel = styled.label`
   display: block;
   font-weight: 300;
   font-size:20px;
-  margin-top: 160px;
+  margin-top: 10px;
  `;
 
 const Button = styled.button`
@@ -201,6 +175,7 @@ const Button = styled.button`
   box-shadow: 0 0 4px #f7dd00;
   transition: box-shadow 0.5s ease;
 `;
+
 
 
 export default AccountDetailes

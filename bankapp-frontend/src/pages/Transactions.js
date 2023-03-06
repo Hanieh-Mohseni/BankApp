@@ -28,7 +28,7 @@ const Transactions=()=> {
         
         
     
-        fetch(`http://localhost:8080/api/transaction/account/${accountId}`, {
+        fetch(`http://localhost:8080/api/transaction/account/${accountId}?page=0&size=10`, {
           "method": "GET",
           "timeout": 0,
           "headers": { 
@@ -83,8 +83,8 @@ const Transactions=()=> {
                   <Mytd>{transaction.type}</Mytd>
                   <Mytd>{transaction.amount}</Mytd>
                   <Mytd>{transaction.description}</Mytd>
-                  <Mytd>{transaction.fromAccount}</Mytd>
-                  <Mytd>{transaction.toAccount}</Mytd>
+                  <Mytd>{transaction.fromaccount}</Mytd>
+                  <Mytd>{transaction.toaccount}</Mytd>
                   <Mytd>{transaction.number}</Mytd>
 
                   
