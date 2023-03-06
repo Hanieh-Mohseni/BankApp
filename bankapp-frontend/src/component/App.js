@@ -37,8 +37,9 @@ const App=()=> {
         <Route path="/transfer" element={<Transfer />} />
         <Route path="/create" element={<CreatAccount />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/transaction" element={<Transactions />} />
         <Route path="/accountDetail/:accountId" element={<AccountDetailes />} />
+        <Route path="/accountTransaction/:accountId" element={<Transactions />} />
+
 
 
         </Routes>

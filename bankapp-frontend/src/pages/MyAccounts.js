@@ -171,6 +171,11 @@ if (withdraw == null || withdraw === "") {
     let path =  `/accountDetail/${id}`; 
     navigate(path);
   }
+
+  const transactionRoute = (id)=>{
+    let path = `/accountTransaction/${id}`;
+    navigate(path);
+  }
   
 
   return (
@@ -201,6 +206,8 @@ if (withdraw == null || withdraw === "") {
                     <Button onClick={routeChange.bind(this)} data-id={account.id}>Detail</Button>
                     <Button onClick={depositFunction.bind(this)} data-id={account.id}>Deposit</Button>
                     <Button onClick={withdrawFunction.bind(this)} data-id={account.id}>Withdraw</Button>
+                    <Button onClick={transactionRoute.bind(this)} data-id={account.id}>Transactions</Button>
+
 
                   </Lasttd>
                 </Mytr>
@@ -268,7 +275,7 @@ const FormDiv = styled.div`
 
 const Form = styled.form`
   height: 350px;
-  width: 550px;
+  width: 650px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;

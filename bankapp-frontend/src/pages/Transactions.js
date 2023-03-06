@@ -18,17 +18,17 @@ const Transactions=()=> {
     const [message, setMessage] = useState(null);
     // const { token } = useContext(UserConstext);
     const token = localStorage.getItem('token');
+    let lastStatus;
+
 
 
 
 
     const retrieveData = () => {
         
-       // console.log(token);
-        let userId = localStorage.getItem('userId');
-        let lastStatus;
+        
     
-        fetch(`http://localhost:8080/api/transaction/user/${userId}`, {
+        fetch(`http://localhost:8080/api/transaction/account/${accountId}`, {
           "method": "GET",
           "timeout": 0,
           "headers": { 
@@ -50,7 +50,7 @@ const Transactions=()=> {
             return;
           }
           // console.log("we have a problem " + err.message);
-          setMessage("we have a problem " + err.message);
+          setMessage("We have a problem " + err.message);
         });
     
       };
