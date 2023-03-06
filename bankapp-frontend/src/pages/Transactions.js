@@ -28,7 +28,7 @@ const Transactions=()=> {
         let userId = localStorage.getItem('userId');
         let lastStatus;
     
-        fetch(`http://localhost:8080/api/transaction/account/${accountId}?page=10&size=10`, {
+        fetch(`http://localhost:8080/api/transaction/user/${userId}`, {
           "method": "GET",
           "timeout": 0,
           "headers": { 
@@ -41,7 +41,7 @@ const Transactions=()=> {
         })
         .then((data) => {
           setTransactions(data);
-    
+          console.log(data);
         })
         .catch((err) => {
           console.log(err);
@@ -81,7 +81,7 @@ const Transactions=()=> {
                 <Mytr key={transaction.id}>
                   <Mytd>{index + 1}</Mytd>
                   <Mytd>{transaction.type}</Mytd>
-                  <Mytd>{transaction.Amount}</Mytd>
+                  <Mytd>{transaction.amount}</Mytd>
                   <Mytd>{transaction.description}</Mytd>
                   <Mytd>{transaction.fromAccount}</Mytd>
                   <Mytd>{transaction.toAccount}</Mytd>

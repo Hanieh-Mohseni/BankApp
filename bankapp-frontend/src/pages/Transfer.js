@@ -48,30 +48,39 @@ const Transfer=()=> {
     let errMsg;
 
 
-    const formData = new FormData();
-    formData.append("amount", amount);
-    formData.append("toaccount", toAccount);
-    formData.append("fromaccount", fromAccount);
-
+ 
     e.preventDefault();
-  
+    const token = localStorage.getItem('token');
     fetch(" http://localhost:8080/api/transfer", {
       method: "POST",
-      body: FormData,
+      "headers": { 
+        "Authorization": 'Bearer ' + token,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        "fromaccount": {
+            "id": fromAccount
+        },
+        "toaccount": {
+            "id": toAccount
+        },
+        "type": "TRANS",
+        "amount": amount
+    }),
         
       })
       
       .then((res) => {
         lastStatus = res.status;
         errMsg = res.msg;
-        return res.json();
+        return res;
       })
       .then((data) => {
         console.log(data);
-        if (lastStatus === 501) {
+        if (lastStatus === 500) {
           alert(errMsg);
         }
-        if (lastStatus === 200) {
+        if (lastStatus === 201) {
           alert("Amount is Transfered.");
         }
       })
@@ -100,7 +109,7 @@ const Transfer=()=> {
       <Item value="">From Account</Item>
       {fromAccounts && fromAccounts.length > 0
         ? fromAccounts.map((account,key) => {
-            return <Item eventKey={account.id}>{account.name}</Item>;
+            return <Item eventKey={account.id} value={account.id}>{account.name}</Item>;
           })
         : null}
     </Wrap>
@@ -117,7 +126,7 @@ onChange={(ev) => {
 <Item value="">To Account</Item>
 {toAccounts && toAccounts.length > 0
   ? toAccounts.map((account,key) => {
-      return <Item eventKey={account.id}>{account.name}</Item>;
+      return <Item eventKey={account.id} value={account.id}>{account.name}</Item>;
     })
   : null}
 </Wrap2>
@@ -143,7 +152,6 @@ const DateDiv = styled.div`
   padding: 10px;
 width:50px;
 margin-left: -30px;
-
 `;
 
 const Wrap = styled.select`
@@ -209,9 +217,7 @@ height: calc(100vh - 50px);
   @media (max-width:550px){
         flex-direction: column-reverse;
     }
-
     
-
 `;
 
 export default Transfer
