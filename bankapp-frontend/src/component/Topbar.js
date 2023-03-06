@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 import { UserContext } from "./UserContext";
 import styled from "styled-components";
 
+
+
 const Topbar = () => {
-  const { loginname, setLoginname } = useContext(UserContext);
+  const { loginname, setLoginname,userId } = useContext(UserContext);
 
   return (
     <Wrapper>
@@ -16,7 +18,7 @@ const Topbar = () => {
             <NavigationLink to="/create">CREATE</NavigationLink>
             <NavigationLink to="/accounts">ACCOUNTS</NavigationLink>
             <NavigationLink to="/transfer">TRANSFER</NavigationLink>
-            <NavigationLink to="/transaction">TRANSACTIONS</NavigationLink>
+            <NavigationLink to="/transaction/">TRANSACTIONS</NavigationLink>
 
             <NavigationLink to="/profile">PROFILE</NavigationLink>
 
@@ -49,7 +51,7 @@ const Topbar = () => {
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 50px;
+  height: 100px;
   background-color: white;
   color: #ea7023;
   position: sticky;
