@@ -25,6 +25,9 @@ const CreatAccount = () => {
     fetch("  http://localhost:8080/api/account", {
       method: "POST",
       body: JSON.stringify({
+        user:{
+          id:localStorage.getItem('userId')
+        },
         name: name,
         type: type,
       }),
@@ -36,7 +39,7 @@ const CreatAccount = () => {
       .then((res) => {
         lastStatus = res.status;
         errMsg = res.msg;
-        return res.json();
+        return res;
       })
       .then((data) => {
         console.log(data);

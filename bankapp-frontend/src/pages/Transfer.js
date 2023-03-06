@@ -11,8 +11,12 @@ const Transfer=()=> {
   ///http://localhost:8080/api/accounts/user/userId
 
 
+  const [fromAccounts, setFromAccounts] = useState([]);
   const [fromAccount, setFromAccount] = useState([]);
+
+  const [toAccounts, setToAccounts] = useState([]);
   const [toAccount, setToAccount] = useState([]);
+
   const [amount,setAmount]=useState();
   const [transactiondate, setTransactiondate] = useState(null);
   const token = localStorage.getItem('token');
@@ -30,9 +34,9 @@ const Transfer=()=> {
     })
      .then((res) => res.json())
      .then((result) => 
-     {setFromAccount(result);
+     {setFromAccounts(result);
       console.log("result:"+ result);
-     setToAccount(result);
+     setToAccounts(result);
      });
     // .then((response)=>response.json()).then((result)=>console.log(result.result))
   }, []);
@@ -43,11 +47,9 @@ const Transfer=()=> {
     let lastStatus;
     let errMsg;
 
-    var isoDate = transactiondate.toISOString();
 
     const formData = new FormData();
     formData.append("amount", amount);
-    formData.append("transactiondate", isoDate.substr(0, isoDate.indexOf("T")));
     formData.append("toaccount", toAccount);
     formData.append("fromaccount", fromAccount);
 
@@ -87,13 +89,17 @@ const Transfer=()=> {
       }}>
     {/* <div>From Account</div> */}
     <Wrap
+    placeholder="Choose one"
       onChange={(ev) => {
         setFromAccount(ev.target.value);
+        console.log("ev.target.value" + ev.target.value);
+        console.log('fromAccount'+ fromAccount)
+
       }}
     >
       <Item value="">From Account</Item>
-      {fromAccount && fromAccount.length > 0
-        ? fromAccount.map((account,key) => {
+      {fromAccounts && fromAccounts.length > 0
+        ? fromAccounts.map((account,key) => {
             return <Item eventKey={account.id}>{account.name}</Item>;
           })
         : null}
@@ -102,13 +108,15 @@ const Transfer=()=> {
 {/* second dropdown */}
 {/* <div>To Account</div> */}
 <Wrap2
+placeholder="Choose one"
 onChange={(ev) => {
   setToAccount(ev.target.value);
+  console.log('toAccount'+ toAccount)
 }}
 >
 <Item value="">To Account</Item>
-{toAccount && toAccount.length > 0
-  ? toAccount.map((account,key) => {
+{toAccounts && toAccounts.length > 0
+  ? toAccounts.map((account,key) => {
       return <Item eventKey={account.id}>{account.name}</Item>;
     })
   : null}
