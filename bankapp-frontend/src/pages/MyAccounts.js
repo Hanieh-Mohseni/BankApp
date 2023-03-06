@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { UserContext } from "../component/UserContext";
 
 
@@ -162,8 +162,15 @@ if (withdraw == null || withdraw === "") {
         console.log("we have a problem " + err.message);
       });
   };
+
+  const navigate = useNavigate();
     
-    
+ 
+  
+  const routeChange = (id) =>{ 
+    let path =  `/accountDetail/${id}`; 
+    navigate(path);
+  }
   
 
   return (
@@ -190,18 +197,12 @@ if (withdraw == null || withdraw === "") {
                   <Mytd>{account.number}</Mytd>
                   <Mytd>{account.type}</Mytd>
                   <Mytd>{account.balance}</Mytd>
-                  <Mytd>
-                    <Link
-                      className="btn btn-primary mx-2"
-                      to={`/accountDetail/${account.id}`}
-                    >
-                      Detail
-                    </Link>
+                  <Lasttd>
+                    <Button onClick={routeChange.bind(this)} data-id={account.id}>Detail</Button>
+                    <Button onClick={depositFunction.bind(this)} data-id={account.id}>Deposit</Button>
+                    <Button onClick={withdrawFunction.bind(this)} data-id={account.id}>Withdraw</Button>
 
-                    <button onClick={depositFunction.bind(this)} data-id={account.id}>Deposit</button>
-                    <button onClick={withdrawFunction.bind(this)} data-id={account.id}>Withdraw</button>
-
-                  </Mytd>
+                  </Lasttd>
                 </Mytr>
               ))}
             </tbody>
@@ -231,12 +232,22 @@ margin-left:20px;
 color:white;
 align-items: center;
 font-size: 18px;
+
 `;
 
 const Mytd = styled.td`
 color:white;
 justify-content: space-around;
 padding: 10px;
+
+`;
+
+const Lasttd = styled.td`
+color:white;
+justify-content: space-around;
+padding: 10px;
+display: flex;
+flex-direction: row;
 
 `;
 
@@ -262,7 +273,7 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgba(0, 0, 22, 0.8);
+  /* background: rgba(0, 0, 22, 0.8); */
   padding: 30px;
   margin: 10px;
   border: none;
@@ -305,5 +316,12 @@ const Button = styled.button`
   transition: box-shadow 0.5s ease;
 `;
 
+const MyLink = styled.link`
+color: white;
+font-size:15px ;
+padding: 10px;
+align-items: center;
+justify-content: center;
+`;
 
 export default MyAccounts

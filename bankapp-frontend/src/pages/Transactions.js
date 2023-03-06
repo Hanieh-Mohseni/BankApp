@@ -163,11 +163,11 @@ border-radius: 10px;
 display: flex;
 flex-direction: column;
 align-items: center;
-background: rgba(0, 0, 22, 0.8);
-padding: 30px;
+/* background: rgba(0, 0, 22, 0.8); */
+/* padding: 30px; */
 margin: 10px;
 border: none;
-box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+/* box-shadow: 0 0 10px rgba(0, 0, 0, 1); */
 `;
 const Label = styled.label`
 align-items: center;

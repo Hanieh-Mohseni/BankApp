@@ -139,7 +139,7 @@ const Register = () => {
 
 
 const Registerdiv = styled.div`
-height: calc(100vh - 50px);
+height: calc(100vh - 5px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -152,18 +152,18 @@ height: calc(100vh - 50px);
 `;
 
 const RegisterSpan = styled.span`
-  font-size: 50px;
+  font-size: 30px;
   color: white;
 `;
 
 const Registerform = styled.form`
-  margin-top: 20px;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
 `;
 
 const Registerlabel = styled.label`
-  margin: 10px 0;
+  margin: 5px 0;
   color: white;
 `;
 

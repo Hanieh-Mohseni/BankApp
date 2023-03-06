@@ -117,29 +117,16 @@ const Mydiv = styled.div`
   color: white;
   display: flex;
   align-items: center;
-  font-weight: 900px;
+  font-weight: 500px;
   margin-bottom: 30px;
   font-size: 22px;
   
 `;
 
-const Mytr = styled.tr`
-justify-content: space-around;
-margin-left:20px;
-color:white;
-align-items: center;
-font-size: 18px;
-`;
 
-const Mytd = styled.td`
-color:white;
-justify-content: space-around;
-padding: 10px;
-
-`;
 
 const Wrapper = styled.div`
-  height: calc(100vh - 60px);
+  height: calc(100vh - 180px);
   z-index: -1;
   display: flex;
   flex-direction: column;
@@ -150,15 +137,12 @@ const Wrapper = styled.div`
   background-size: cover;
   overflow-y: hidden;
   overflow-x: hidden;
-  top: 50%;
+  top: 20%;
   left: 50%;
-  @media (max-width:650px){
-        position: static;
-        .content{
-            ul{
-                display: none;
-            }
-        }
+  background-color: #333333;
+
+  @media (max-width:550px){
+        flex-direction: column-reverse;
     }
 `;
 
@@ -166,15 +150,15 @@ const FormDiv = styled.div`
 `;
 
 const Form = styled.form`
-  height: 350px;
-  width: 550px;
+  height: 400px;
+  width: 400px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgba(0, 0, 22, 0.8);
-  padding: 30px;
-  margin: 10px;
+  /* background: rgba(0, 0, 22, 0.8); */
+  padding: 10px;
+  margin-top: 5px;
   border: none;
   box-shadow: 0 0 10px rgba(0, 0, 0, 1);
 `;
@@ -191,7 +175,7 @@ const MessageLabel = styled.label`
   display: block;
   font-weight: 300;
   font-size:20px;
-  margin-top: 160px;
+  margin-top: 10px;
  `;
 
 const Button = styled.button`

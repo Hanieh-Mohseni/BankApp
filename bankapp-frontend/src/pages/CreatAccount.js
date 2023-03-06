@@ -123,7 +123,7 @@ height: calc(100vh - 50px);
 `;
 
 const CreatSpan = styled.span`
-  font-size: 25px;
+  font-size: 35px;
   color: white;
 `;
 

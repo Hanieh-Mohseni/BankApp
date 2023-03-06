@@ -30,8 +30,9 @@ const Transfer=()=> {
     })
      .then((res) => res.json())
      .then((result) => 
-     {setFromAccount(result.data);
-     setToAccount(result.data);
+     {setFromAccount(result);
+      console.log("result:"+ result);
+     setToAccount(result);
      });
     // .then((response)=>response.json()).then((result)=>console.log(result.result))
   }, []);
@@ -92,8 +93,8 @@ const Transfer=()=> {
     >
       <Item value="">From Account</Item>
       {fromAccount && fromAccount.length > 0
-        ? fromAccount.map((account) => {
-            return <Item eventKey={account}>{account}</Item>;
+        ? fromAccount.map((account,key) => {
+            return <Item eventKey={account.id}>{account.name}</Item>;
           })
         : null}
     </Wrap>
@@ -107,8 +108,8 @@ onChange={(ev) => {
 >
 <Item value="">To Account</Item>
 {toAccount && toAccount.length > 0
-  ? toAccount.map((account) => {
-      return <Item eventKey={account}>{account}</Item>;
+  ? toAccount.map((account,key) => {
+      return <Item eventKey={account.id}>{account.name}</Item>;
     })
   : null}
 </Wrap2>

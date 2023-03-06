@@ -101,7 +101,7 @@ const Logindiv = styled.div`
 `;
 
 const LoginSpan = styled.span`
-  font-size: 50px;
+  font-size: 35px;
   color: white;
 `;
 
