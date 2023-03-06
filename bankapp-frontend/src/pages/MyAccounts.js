@@ -168,7 +168,7 @@ if (withdraw == null || withdraw === "") {
  
   
   const routeChange = (e) =>{ 
-    let path =  `/accountDetail/${e.currentTarget.dataset.id}`; 
+    let path =  `/accountDetaile/${e.currentTarget.dataset.id}`; 
     navigate(path);
   }
 

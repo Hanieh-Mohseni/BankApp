@@ -27,7 +27,7 @@ const AccountDetailes = () => {
     console.log(token);
     var lastStatus;
 
-    fetch(`http://localhost:8080/api/account/accountId`, {
+    fetch(`http://localhost:8080/api/account/${accountId}`, {
       "method": "GET",
       "timeout": 0,
       "headers": { 
