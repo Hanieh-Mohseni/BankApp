@@ -28,7 +28,7 @@ const Transactions=()=> {
         
         
     
-        fetch(`http://localhost:8080/api/transaction/account/${accountId}?page=0&size=10`, {
+        fetch(`http://ec2-3-133-124-143.us-east-2.compute.amazonaws.com:8080/api/transaction/account/${accountId}?page=0&size=10`, {
           "method": "GET",
           "timeout": 0,
           "headers": { 

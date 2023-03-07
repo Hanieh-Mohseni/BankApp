@@ -3,8 +3,8 @@ import { UserContext } from "../component/UserContext";
 import { useNavigate } from "react-router";
 
 const Logout = () => {
-  const { user, setUser } = useContext(UserContext);
-  setUser(null);
+  const { loginname, setLoginname } = useContext(UserContext);
+  setLoginname(null);
   const navigate = useNavigate();
   navigate("/login");
 

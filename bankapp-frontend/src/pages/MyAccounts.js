@@ -28,7 +28,7 @@ const MyAccounts = () => {
     var userId = localStorage.getItem('userId');
     var lastStatus;
 
-    fetch(`http://localhost:8080/api/accounts/user/${userId}`, {
+    fetch(`http://ec2-3-133-124-143.us-east-2.compute.amazonaws.com:8080/api/accounts/user/${userId}`, {
       "method": "GET",
       "timeout": 0,
       "headers": { 
@@ -77,7 +77,7 @@ if (withdraw == null || withdraw === "") {
     alert(text);
 //console.log("deposit:" + withdraw);
 
-  fetch("http://localhost:8080/api/operation", {
+  fetch("http://ec2-3-133-124-143.us-east-2.compute.amazonaws.com:8080/api/operation", {
     method: "POST",
     body: JSON.stringify({
       accountId: id,
@@ -134,7 +134,7 @@ if (withdraw == null || withdraw === "") {
   console.log("deposit:" + deposit);
   console.log("id:" + id);
   
-    fetch("http://localhost:8080/api/operation", {
+    fetch("http://ec2-3-133-124-143.us-east-2.compute.amazonaws.com:8080/api/operation", {
       method: "POST",
       body: JSON.stringify({
         accountId: id,

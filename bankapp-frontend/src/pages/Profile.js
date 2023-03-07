@@ -34,7 +34,7 @@ const Profile = () => {
     var userId = localStorage.getItem('userId');
     var lastStatus;
 
-    fetch(`http://localhost:8080/api/user/${userId}`, {
+    fetch(`http://ec2-3-133-124-143.us-east-2.compute.amazonaws.com:8080/api/user/${userId}`, {
       "method": "GET",
       "timeout": 0,
       "headers": { 

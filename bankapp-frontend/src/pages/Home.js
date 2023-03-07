@@ -43,7 +43,6 @@ background-position: center;
 const Button = styled.button`
   position: relative;
   align-items: center;
-  margin-bottom: 10px;
   display: block;
   margin: 0 auto;
   width: 120px;
@@ -52,9 +51,13 @@ const Button = styled.button`
   border: #ea7023;
   cursor: pointer;
   align-items: center;
+  justify-content: center;
   padding: 3px;
   font-weight: 500;
-  margin-top: 220px;
+  margin-top: 390px;
+  margin-bottom:20px;
+  margin-left: -320px;
+
   font-size: 25px;
   border-radius: 30px;
   box-shadow: 0 0 4px #ea7023;

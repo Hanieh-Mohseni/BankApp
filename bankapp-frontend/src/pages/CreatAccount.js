@@ -65,7 +65,7 @@ const CreatAccount = () => {
             creatNewAccount(e);
         }}
       >
-        <CreatSpan>Creat New Account</CreatSpan>
+        <CreatSpan>Create New Account</CreatSpan>
 
         <Creatlabel>Name</Creatlabel>
         <Creatinput
@@ -90,7 +90,7 @@ const CreatAccount = () => {
 
         
 
-        <CreatButton type="submit">Creat</CreatButton>
+        <CreatButton type="submit">Create</CreatButton>
       </Creatform>
     </Creatdiv>
   );
