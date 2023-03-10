@@ -1,12 +1,12 @@
-package com.hm.bankApp.service;
+package com.hx.bank.service;
 
-import com.hm.bankApp.entity.Account;
-import com.hm.bankApp.entity.Transaction;
-import com.hm.bankApp.entity.User;
-import com.hm.bankApp.model.*;
-import com.hm.bankApp.repository.AccountRepository;
-import com.hm.bankApp.repository.TransactionRepository;
-import com.hm.bankApp.repository.UserRepository;
+import com.hx.bank.entity.Account;
+import com.hx.bank.entity.Transaction;
+import com.hx.bank.entity.User;
+import com.hx.bank.model.*;
+import com.hx.bank.repository.AccountRepository;
+import com.hx.bank.repository.TransactionRepository;
+import com.hx.bank.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,8 +66,8 @@ public class BankService {
     @Transactional
     public Transaction transfer(Transaction transaction) {
         transaction.setDescription("Make a transfer.");
-        Account accountFrom = accountRepository.findById(transaction.getFromaccount().getID()).orElseThrow();
-        Account accountTo = accountRepository.findById(transaction.getToaccount().getID()).orElseThrow();
+        Account accountFrom = accountRepository.findById(transaction.getFromaccount().getId()).orElseThrow();
+        Account accountTo = accountRepository.findById(transaction.getToaccount().getId()).orElseThrow();
 
         accountFrom.setBalance(accountFrom.getBalance().subtract(transaction.getAmount()));
         accountTo.setBalance(accountTo.getBalance().add(transaction.getAmount()));
@@ -87,14 +87,18 @@ public class BankService {
         Account account = accountRepository.findById(accountId).orElseThrow();
         Pageable paging = PageRequest.of(page, size);
         List<Transaction> list = transactionRepository.findByFromaccount(account, paging);
+        List<Transaction> toList = transactionRepository.findByToaccount(account, paging);
+        list.addAll(toList);
+        list.sort((obj, obj1) -> obj.getId().compareTo(obj1.getId()));
         List<TransactionModel> result = new ArrayList<>();
         for (Transaction obj : list) {
             TransactionModel model = new TransactionModel();
             model.setId(obj.getId());
             model.setAmount(obj.getAmount());
             model.setType(obj.getType());
-            model.setFromaccount(obj.getFromaccount().getID());
-            if (obj.getToaccount()!=null) model.setToaccount(obj.getToaccount().getID());
+            model.setFromaccount(obj.getFromaccount().getNumber());
+            if (obj.getToaccount()!=null) model.setToaccount(obj.getToaccount().getNumber());
+            model.setTransactiondate(obj.getTransactiondate());
             model.setDescription(obj.getDescription());
             result.add(model);
         }
