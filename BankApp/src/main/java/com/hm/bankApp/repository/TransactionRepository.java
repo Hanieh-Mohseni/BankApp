@@ -1,7 +1,9 @@
-package com.hx.bank.repository;
+package com.hm.bankApp.repository;
 
-import com.hx.bank.entity.Account;
-import com.hx.bank.entity.Transaction;
+import com.hm.bankApp.entity.Account;
+import com.hm.bankApp.entity.Transaction;
+import com.hm.bankApp.entity.Account;
+import com.hm.bankApp.entity.Transaction;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

@@ -4,7 +4,8 @@ import com.hm.bankApp.entity.Account;
 import com.hm.bankApp.entity.Transaction;
 import com.hm.bankApp.entity.User;
 import com.hm.bankApp.model.*;
-import com.hm.bankApp.service.BankService;
+//import com.hm.bankApp.service.BankService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,8 @@ import java.util.List;
 public class BankController {
 
     @Autowired
-    private BankService service;
+    private com.hm.bankApp.service.BankService service;
+//    private BankService service;
 
     @PostMapping("/user")
     @ResponseStatus(HttpStatus.CREATED)

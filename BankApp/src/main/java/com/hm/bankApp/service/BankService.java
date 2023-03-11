@@ -1,12 +1,13 @@
-package com.hx.bank.service;
+package com.hm.bankApp.service;
 
-import com.hx.bank.entity.Account;
-import com.hx.bank.entity.Transaction;
-import com.hx.bank.entity.User;
-import com.hx.bank.model.*;
-import com.hx.bank.repository.AccountRepository;
-import com.hx.bank.repository.TransactionRepository;
-import com.hx.bank.repository.UserRepository;
+import com.hm.bankApp.repository.AccountRepository;
+import com.hm.bankApp.entity.Account;
+import com.hm.bankApp.entity.Transaction;
+import com.hm.bankApp.entity.User;
+import com.hm.bankApp.model.*;
+import com.hm.bankApp.repository.AccountRepository;
+import com.hm.bankApp.repository.TransactionRepository;
+import com.hm.bankApp.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,8 +67,8 @@ public class BankService {
     @Transactional
     public Transaction transfer(Transaction transaction) {
         transaction.setDescription("Make a transfer.");
-        Account accountFrom = accountRepository.findById(transaction.getFromaccount().getId()).orElseThrow();
-        Account accountTo = accountRepository.findById(transaction.getToaccount().getId()).orElseThrow();
+        Account accountFrom = accountRepository.findById(transaction.getFromaccount().getID()).orElseThrow();
+        Account accountTo = accountRepository.findById(transaction.getToaccount().getID()).orElseThrow();
 
         accountFrom.setBalance(accountFrom.getBalance().subtract(transaction.getAmount()));
         accountTo.setBalance(accountTo.getBalance().add(transaction.getAmount()));
