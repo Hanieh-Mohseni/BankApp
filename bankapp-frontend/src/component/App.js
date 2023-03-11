@@ -21,11 +21,12 @@ const App=()=> {
   const [userId, setUserId] = useState("");
   const [loginname, setLoginname] = useState("");
   const [lastStatus, setLastStatus ] = useState(null);
+  const [isLoggedIn, setIsLoggedIn]=useState(false)
 
   return (
     <div>
      <Router>
-     <UserContext.Provider value={{token, setToken, userId, setUserId,loginname,setLoginname, lastStatus, setLastStatus}}>
+     <UserContext.Provider value={{isLoggedIn,setIsLoggedIn, token, setToken, userId, setUserId,loginname,setLoginname, lastStatus, setLastStatus}}>
 
       <Topbar />
       <Routes>

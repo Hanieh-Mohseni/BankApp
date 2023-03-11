@@ -7,13 +7,14 @@ import styled from "styled-components";
 const Topbar = () => {
   const { loginname, setLoginname } = useContext(UserContext);
   const { lastStatus, setLastStatus } = useContext(UserContext);
+  const {isLoggedIn,setIsLoggedIn} = useContext(UserContext);
 
 
   return (
     <Wrapper>
       <TopCenter>
         <NavigationList>
-          <LiDiv>
+        {isLoggedIn && <LiDiv>
             <NavigationLink to="/">HOME</NavigationLink>
             <NavigationLink to="/create">CREATE</NavigationLink>
             <NavigationLink to="/accounts">ACCOUNTS</NavigationLink>
@@ -21,7 +22,7 @@ const Topbar = () => {
 
             <NavigationLink to="/profile">PROFILE</NavigationLink>
 
-          </LiDiv>
+          </LiDiv>}
         </NavigationList>
       </TopCenter>
 

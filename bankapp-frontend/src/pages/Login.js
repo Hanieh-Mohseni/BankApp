@@ -13,6 +13,10 @@ const Login = () => {
   const navigate = useNavigate();
   const { userId, setUserId } = useContext(UserContext);
   const { token, setToken } = useContext(UserContext);
+  const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
+
+
+  
 
   // const {user, setUser} = useContext(UserConstext)
   const {loginname, setLoginname} = useContext(UserContext)
@@ -75,7 +79,12 @@ const Login = () => {
         <Logininput
           type="text"
           value={loginname}
-          onChange={(e) => setLoginname(e.target.value)}
+          onChange={(e) => {
+            setLoginname(e.target.value);
+            setIsLoggedIn(true) }
+
+          }
+          
         />
 
         <Loginlabel>Password</Loginlabel>
