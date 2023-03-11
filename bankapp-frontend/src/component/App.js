@@ -20,11 +20,12 @@ const App=()=> {
   const [token,setToken]= useState("");
   const [userId, setUserId] = useState("");
   const [loginname, setLoginname] = useState("");
+  const [lastStatus, setLastStatus ] = useState(null);
 
   return (
     <div>
      <Router>
-     <UserContext.Provider value={{token, setToken, userId, setUserId,loginname,setLoginname}}>
+     <UserContext.Provider value={{token, setToken, userId, setUserId,loginname,setLoginname, lastStatus, setLastStatus}}>
 
       <Topbar />
       <Routes>

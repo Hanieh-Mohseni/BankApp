@@ -6,6 +6,8 @@ import styled from "styled-components";
 
 const Topbar = () => {
   const { loginname, setLoginname } = useContext(UserContext);
+  const { lastStatus, setLastStatus } = useContext(UserContext);
+
 
   return (
     <Wrapper>
@@ -26,7 +28,7 @@ const Topbar = () => {
       <TopRight>
         <NavigationList>
           <LeftLiDiv>
-            {loginname ? (
+            {(loginname ) ? (
               <NavigationLink to="/accounts">{loginname}</NavigationLink>
             ) : (
               <NavigationLink to="/Register"> Register</NavigationLink>
@@ -34,7 +36,7 @@ const Topbar = () => {
           </LeftLiDiv>
 
           <LeftLiDiv>
-            {loginname ? (
+            {(loginname && lastStatus!==401) ? (
               <NavigationLink to="/logout">Logout</NavigationLink>
             ) : (
               <NavigationLink to="/Login">Login</NavigationLink>
