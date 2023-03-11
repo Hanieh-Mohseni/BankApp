@@ -25,7 +25,7 @@ const Login = () => {
 
   const signing_in = (e) => {
     e.preventDefault();
-    fetch("http://ec2-3-133-124-143.us-east-2.compute.amazonaws.com:8080/api/v1/auth/authenticate", {
+    fetch("http://localhost:8080/api/v1/auth/authenticate", {
       method: "POST",
       body: JSON.stringify({
         loginname: loginname,

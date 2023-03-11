@@ -25,7 +25,7 @@ const Transfer=()=> {
   
   
   useEffect(() => {
-    fetch(`http://ec2-3-133-124-143.us-east-2.compute.amazonaws.com:8080/api/accounts/user/${userId}`,{
+    fetch(`http://localhost:8080/api/accounts/user/${userId}`,{
       "method": "GET",
       "timeout": 0,
       "headers": { 
@@ -51,7 +51,7 @@ const Transfer=()=> {
  
     e.preventDefault();
     const token = localStorage.getItem('token');
-    fetch(" http://ec2-3-133-124-143.us-east-2.compute.amazonaws.com:8080/api/transfer", {
+    fetch(" http://localhost:8080/api/transfer", {
       method: "POST",
       "headers": { 
         "Authorization": 'Bearer ' + token,

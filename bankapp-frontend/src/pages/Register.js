@@ -22,7 +22,7 @@ const Register = () => {
       alert("Your entered passwords doesn't match. Please try again!");
       return true;
     }
-    fetch(" http://ec2-3-133-124-143.us-east-2.compute.amazonaws.com:8080/api/v1/auth/register", {
+    fetch(" http://localhost:8080/api/v1/auth/register", {
       method: "POST",
       body: JSON.stringify({
         loginname: loginname,
