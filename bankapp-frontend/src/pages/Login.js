@@ -70,6 +70,7 @@ const Login = () => {
       <Loginform
         onSubmit={(e) => {
           signing_in(e);
+          setIsLoggedIn(true)
         }}
       >
         {/* <img src={LoginBackground}/> */}
@@ -81,7 +82,7 @@ const Login = () => {
           value={loginname}
           onChange={(e) => {
             setLoginname(e.target.value);
-            setIsLoggedIn(true) }
+             }
 
           }
           
