@@ -70,7 +70,7 @@ const Login = () => {
       <Loginform
         onSubmit={(e) => {
           signing_in(e);
-          setIsLoggedIn(true)
+          setIsLoggedIn(true);
         }}
       >
         {/* <img src={LoginBackground}/> */}
@@ -79,6 +79,7 @@ const Login = () => {
         <Loginlabel>User Name</Loginlabel>
         <Logininput
           type="text"
+          required="required"
           value={loginname}
           onChange={(e) => {
             setLoginname(e.target.value);
@@ -91,6 +92,7 @@ const Login = () => {
         <Loginlabel>Password</Loginlabel>
         <Logininput
           type="password"
+          required="required"
           placeholder="Enter your passwoed ..."
           onChange={(e) => setPassword(e.target.value)}
         />
